@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="practicaprofesionalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="cliente_comercio">
+    <Key>
+      <PropertyRef Name="id_cliente_comercio" />
+    </Key>
+    <Property Name="id_cliente_comercio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="id_comercio" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="clientes" Relationship="Self.FK__cliente_c__id_cl__3F466844" FromRole="cliente_comercio" ToRole="clientes" />
+    <NavigationProperty Name="comercio" Relationship="Self.FK__cliente_c__id_co__403A8C7D" FromRole="cliente_comercio" ToRole="comercio" />
+  </EntityType>
+  <EntityType Name="clientes">
+    <Key>
+      <PropertyRef Name="id_cliente" />
+    </Key>
+    <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="direccion" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="telefono" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="cliente_comercio" Relationship="Self.FK__cliente_c__id_cl__3F466844" FromRole="clientes" ToRole="cliente_comercio" />
+    <NavigationProperty Name="facturas" Relationship="Self.FK__facturas__id_cli__33D4B598" FromRole="clientes" ToRole="facturas" />
+  </EntityType>
+  <EntityType Name="comercio">
+    <Key>
+      <PropertyRef Name="id_comercio" />
+    </Key>
+    <Property Name="id_comercio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="razon_social" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CUIT" Type="Int32" />
+    <Property Name="IVA" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="Ingresos_brutos" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+    <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="cliente_comercio" Relationship="Self.FK__cliente_c__id_co__403A8C7D" FromRole="comercio" ToRole="cliente_comercio" />
+    <NavigationProperty Name="empleado" Relationship="Self.FK__empleado__id_com__2D27B809" FromRole="comercio" ToRole="empleado" />
+    <NavigationProperty Name="productos" Relationship="Self.FK__productos__id_co__30F848ED" FromRole="comercio" ToRole="productos" />
+    <NavigationProperty Name="ventas" Relationship="Self.FK__ventas__id_comer__3A81B327" FromRole="comercio" ToRole="ventas" />
+    <NavigationProperty Name="proveedores_comercios" Relationship="Self.FK2" FromRole="comercio" ToRole="proveedores_comercios" />
+  </EntityType>
+  <EntityType Name="empleado">
+    <Key>
+      <PropertyRef Name="id_empleado" />
+    </Key>
+    <Property Name="id_empleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_comercio" Type="Int32" Nullable="false" />
+    <Property Name="id_tipo" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="dni" Type="Int32" Nullable="false" />
+    <Property Name="Contraseña" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="comercio" Relationship="Self.FK__empleado__id_com__2D27B809" FromRole="empleado" ToRole="comercio" />
+    <NavigationProperty Name="tipo_empleado" Relationship="Self.FK__empleado__id_tip__2E1BDC42" FromRole="empleado" ToRole="tipo_empleado" />
+    <NavigationProperty Name="ventas" Relationship="Self.FK__ventas__id_emple__3B75D760" FromRole="empleado" ToRole="ventas" />
+  </EntityType>
+  <EntityType Name="factura_productos">
+    <Key>
+      <PropertyRef Name="id_factura_producto" />
+    </Key>
+    <Property Name="id_factura_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_factura" Type="Int32" Nullable="false" />
+    <Property Name="id_producto" Type="Int32" Nullable="false" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="facturas" Relationship="Self.FK__factura_p__id_fa__36B12243" FromRole="factura_productos" ToRole="facturas" />
+    <NavigationProperty Name="productos" Relationship="Self.FK__factura_p__id_pr__37A5467C" FromRole="factura_productos" ToRole="productos" />
+  </EntityType>
+  <EntityType Name="facturas">
+    <Key>
+      <PropertyRef Name="id_factura" />
+    </Key>
+    <Property Name="id_factura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="total" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="anulada" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="clientes" Relationship="Self.FK__facturas__id_cli__33D4B598" FromRole="facturas" ToRole="clientes" />
+    <NavigationProperty Name="factura_productos" Relationship="Self.FK__factura_p__id_fa__36B12243" FromRole="facturas" ToRole="factura_productos" />
+    <NavigationProperty Name="ventas" Relationship="Self.FK__ventas__id_factu__3C69FB99" FromRole="facturas" ToRole="ventas" />
+  </EntityType>
+  <EntityType Name="productos">
+    <Key>
+      <PropertyRef Name="id_producto" />
+    </Key>
+    <Property Name="id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_comercio" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="stock" Type="Int32" Nullable="false" />
+    <Property Name="precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="comercio" Relationship="Self.FK__productos__id_co__30F848ED" FromRole="productos" ToRole="comercio" />
+    <NavigationProperty Name="factura_productos" Relationship="Self.FK__factura_p__id_pr__37A5467C" FromRole="productos" ToRole="factura_productos" />
+    <NavigationProperty Name="proveedores_productos" Relationship="Self.FK__proveedor__id_pr__440B1D61" FromRole="productos" ToRole="proveedores_productos" />
+  </EntityType>
+  <EntityType Name="proveedores">
+    <Key>
+      <PropertyRef Name="id_proveedor" />
+    </Key>
+    <Property Name="id_proveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="razon_social" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="telefono" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="proveedores_productos" Relationship="Self.FK__proveedor__id_pr__4316F928" FromRole="proveedores" ToRole="proveedores_productos" />
+    <NavigationProperty Name="proveedores_comercios" Relationship="Self.FK1" FromRole="proveedores" ToRole="proveedores_comercios" />
+  </EntityType>
+  <EntityType Name="proveedores_comercios">
+    <Key>
+      <PropertyRef Name="id_proveedores_comercios" />
+    </Key>
+    <Property Name="id_proveedores_comercios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_proveedor" Type="Int32" Nullable="false" />
+    <Property Name="id_comercio" Type="Int32" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="comercio" Relationship="Self.FK2" FromRole="proveedores_comercios" ToRole="comercio" />
+    <NavigationProperty Name="proveedores" Relationship="Self.FK1" FromRole="proveedores_comercios" ToRole="proveedores" />
+  </EntityType>
+  <EntityType Name="proveedores_productos">
+    <Key>
+      <PropertyRef Name="id_proveedor_producto" />
+    </Key>
+    <Property Name="id_proveedor_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_proveedor" Type="Int32" Nullable="false" />
+    <Property Name="id_producto" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="productos" Relationship="Self.FK__proveedor__id_pr__440B1D61" FromRole="proveedores_productos" ToRole="productos" />
+    <NavigationProperty Name="proveedores" Relationship="Self.FK__proveedor__id_pr__4316F928" FromRole="proveedores_productos" ToRole="proveedores" />
+  </EntityType>
+  <EntityType Name="tipo_empleado">
+    <Key>
+      <PropertyRef Name="id_tipo" />
+    </Key>
+    <Property Name="id_tipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="empleado" Relationship="Self.FK__empleado__id_tip__2E1BDC42" FromRole="tipo_empleado" ToRole="empleado" />
+  </EntityType>
+  <EntityType Name="ventas">
+    <Key>
+      <PropertyRef Name="id_venta" />
+    </Key>
+    <Property Name="id_venta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_comercio" Type="Int32" Nullable="false" />
+    <Property Name="id_empleado" Type="Int32" Nullable="false" />
+    <Property Name="id_factura" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="comercio" Relationship="Self.FK__ventas__id_comer__3A81B327" FromRole="ventas" ToRole="comercio" />
+    <NavigationProperty Name="empleado" Relationship="Self.FK__ventas__id_emple__3B75D760" FromRole="ventas" ToRole="empleado" />
+    <NavigationProperty Name="facturas" Relationship="Self.FK__ventas__id_factu__3C69FB99" FromRole="ventas" ToRole="facturas" />
+  </EntityType>
+  <Association Name="FK__cliente_c__id_cl__3F466844">
+    <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+    <End Role="cliente_comercio" Type="Self.cliente_comercio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="cliente_comercio">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__cliente_c__id_co__403A8C7D">
+    <End Role="comercio" Type="Self.comercio" Multiplicity="1" />
+    <End Role="cliente_comercio" Type="Self.cliente_comercio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="comercio">
+        <PropertyRef Name="id_comercio" />
+      </Principal>
+      <Dependent Role="cliente_comercio">
+        <PropertyRef Name="id_comercio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__facturas__id_cli__33D4B598">
+    <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+    <End Role="facturas" Type="Self.facturas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="facturas">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__empleado__id_com__2D27B809">
+    <End Role="comercio" Type="Self.comercio" Multiplicity="1" />
+    <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="comercio">
+        <PropertyRef Name="id_comercio" />
+      </Principal>
+      <Dependent Role="empleado">
+        <PropertyRef Name="id_comercio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__productos__id_co__30F848ED">
+    <End Role="comercio" Type="Self.comercio" Multiplicity="1" />
+    <End Role="productos" Type="Self.productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="comercio">
+        <PropertyRef Name="id_comercio" />
+      </Principal>
+      <Dependent Role="productos">
+        <PropertyRef Name="id_comercio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ventas__id_comer__3A81B327">
+    <End Role="comercio" Type="Self.comercio" Multiplicity="1" />
+    <End Role="ventas" Type="Self.ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="comercio">
+        <PropertyRef Name="id_comercio" />
+      </Principal>
+      <Dependent Role="ventas">
+        <PropertyRef Name="id_comercio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK2">
+    <End Role="comercio" Type="Self.comercio" Multiplicity="1" />
+    <End Role="proveedores_comercios" Type="Self.proveedores_comercios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="comercio">
+        <PropertyRef Name="id_comercio" />
+      </Principal>
+      <Dependent Role="proveedores_comercios">
+        <PropertyRef Name="id_comercio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__empleado__id_tip__2E1BDC42">
+    <End Role="tipo_empleado" Type="Self.tipo_empleado" Multiplicity="1" />
+    <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipo_empleado">
+        <PropertyRef Name="id_tipo" />
+      </Principal>
+      <Dependent Role="empleado">
+        <PropertyRef Name="id_tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ventas__id_emple__3B75D760">
+    <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+    <End Role="ventas" Type="Self.ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empleado">
+        <PropertyRef Name="id_empleado" />
+      </Principal>
+      <Dependent Role="ventas">
+        <PropertyRef Name="id_empleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__factura_p__id_fa__36B12243">
+    <End Role="facturas" Type="Self.facturas" Multiplicity="1" />
+    <End Role="factura_productos" Type="Self.factura_productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="facturas">
+        <PropertyRef Name="id_factura" />
+      </Principal>
+      <Dependent Role="factura_productos">
+        <PropertyRef Name="id_factura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__factura_p__id_pr__37A5467C">
+    <End Role="productos" Type="Self.productos" Multiplicity="1" />
+    <End Role="factura_productos" Type="Self.factura_productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos">
+        <PropertyRef Name="id_producto" />
+      </Principal>
+      <Dependent Role="factura_productos">
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ventas__id_factu__3C69FB99">
+    <End Role="facturas" Type="Self.facturas" Multiplicity="1" />
+    <End Role="ventas" Type="Self.ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="facturas">
+        <PropertyRef Name="id_factura" />
+      </Principal>
+      <Dependent Role="ventas">
+        <PropertyRef Name="id_factura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__proveedor__id_pr__440B1D61">
+    <End Role="productos" Type="Self.productos" Multiplicity="1" />
+    <End Role="proveedores_productos" Type="Self.proveedores_productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos">
+        <PropertyRef Name="id_producto" />
+      </Principal>
+      <Dependent Role="proveedores_productos">
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__proveedor__id_pr__4316F928">
+    <End Role="proveedores" Type="Self.proveedores" Multiplicity="1" />
+    <End Role="proveedores_productos" Type="Self.proveedores_productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proveedores">
+        <PropertyRef Name="id_proveedor" />
+      </Principal>
+      <Dependent Role="proveedores_productos">
+        <PropertyRef Name="id_proveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK1">
+    <End Role="proveedores" Type="Self.proveedores" Multiplicity="1" />
+    <End Role="proveedores_comercios" Type="Self.proveedores_comercios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proveedores">
+        <PropertyRef Name="id_proveedor" />
+      </Principal>
+      <Dependent Role="proveedores_comercios">
+        <PropertyRef Name="id_proveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="practicaprofesionalEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="cliente_comercio" EntityType="Self.cliente_comercio" />
+    <EntitySet Name="clientes" EntityType="Self.clientes" />
+    <EntitySet Name="comercio" EntityType="Self.comercio" />
+    <EntitySet Name="empleado" EntityType="Self.empleado" />
+    <EntitySet Name="factura_productos" EntityType="Self.factura_productos" />
+    <EntitySet Name="facturas" EntityType="Self.facturas" />
+    <EntitySet Name="productos" EntityType="Self.productos" />
+    <EntitySet Name="proveedores" EntityType="Self.proveedores" />
+    <EntitySet Name="proveedores_comercios" EntityType="Self.proveedores_comercios" />
+    <EntitySet Name="proveedores_productos" EntityType="Self.proveedores_productos" />
+    <EntitySet Name="tipo_empleado" EntityType="Self.tipo_empleado" />
+    <EntitySet Name="ventas" EntityType="Self.ventas" />
+    <AssociationSet Name="FK__cliente_c__id_cl__3F466844" Association="Self.FK__cliente_c__id_cl__3F466844">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="cliente_comercio" EntitySet="cliente_comercio" />
+    </AssociationSet>
+    <AssociationSet Name="FK__cliente_c__id_co__403A8C7D" Association="Self.FK__cliente_c__id_co__403A8C7D">
+      <End Role="comercio" EntitySet="comercio" />
+      <End Role="cliente_comercio" EntitySet="cliente_comercio" />
+    </AssociationSet>
+    <AssociationSet Name="FK__facturas__id_cli__33D4B598" Association="Self.FK__facturas__id_cli__33D4B598">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="facturas" EntitySet="facturas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__empleado__id_com__2D27B809" Association="Self.FK__empleado__id_com__2D27B809">
+      <End Role="comercio" EntitySet="comercio" />
+      <End Role="empleado" EntitySet="empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK__productos__id_co__30F848ED" Association="Self.FK__productos__id_co__30F848ED">
+      <End Role="comercio" EntitySet="comercio" />
+      <End Role="productos" EntitySet="productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ventas__id_comer__3A81B327" Association="Self.FK__ventas__id_comer__3A81B327">
+      <End Role="comercio" EntitySet="comercio" />
+      <End Role="ventas" EntitySet="ventas" />
+    </AssociationSet>
+    <AssociationSet Name="FK2" Association="Self.FK2">
+      <End Role="comercio" EntitySet="comercio" />
+      <End Role="proveedores_comercios" EntitySet="proveedores_comercios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__empleado__id_tip__2E1BDC42" Association="Self.FK__empleado__id_tip__2E1BDC42">
+      <End Role="tipo_empleado" EntitySet="tipo_empleado" />
+      <End Role="empleado" EntitySet="empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ventas__id_emple__3B75D760" Association="Self.FK__ventas__id_emple__3B75D760">
+      <End Role="empleado" EntitySet="empleado" />
+      <End Role="ventas" EntitySet="ventas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__factura_p__id_fa__36B12243" Association="Self.FK__factura_p__id_fa__36B12243">
+      <End Role="facturas" EntitySet="facturas" />
+      <End Role="factura_productos" EntitySet="factura_productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__factura_p__id_pr__37A5467C" Association="Self.FK__factura_p__id_pr__37A5467C">
+      <End Role="productos" EntitySet="productos" />
+      <End Role="factura_productos" EntitySet="factura_productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ventas__id_factu__3C69FB99" Association="Self.FK__ventas__id_factu__3C69FB99">
+      <End Role="facturas" EntitySet="facturas" />
+      <End Role="ventas" EntitySet="ventas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__proveedor__id_pr__440B1D61" Association="Self.FK__proveedor__id_pr__440B1D61">
+      <End Role="productos" EntitySet="productos" />
+      <End Role="proveedores_productos" EntitySet="proveedores_productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__proveedor__id_pr__4316F928" Association="Self.FK__proveedor__id_pr__4316F928">
+      <End Role="proveedores" EntitySet="proveedores" />
+      <End Role="proveedores_productos" EntitySet="proveedores_productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK1" Association="Self.FK1">
+      <End Role="proveedores" EntitySet="proveedores" />
+      <End Role="proveedores_comercios" EntitySet="proveedores_comercios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

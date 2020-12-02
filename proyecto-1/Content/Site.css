@@ -1,0 +1,49 @@
+﻿form {
+    margin: auto;
+    width: auto;
+    padding: 50px;
+    border: 2px;
+    border-radius: 10px;
+    border-style: groove;
+    border-color: #337ab7;
+    max-width: 600px;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+  
+}
+
+body {
+    padding-top: 50px;
+    margin: auto;
+}
+
+#advertenciadatos {
+    display: none;
+    color: red;
+}
+
+#submit {
+    float: right;
+    width: 60px;
+}
+
+#logo {
+    width: 320px;
+    margin-bottom: 50px;
+}
+
+.boton{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+h2{
+    text-align: center;
+}
+
+.#formVentas{
+    width: 600px;
+    height: 600px;
+}

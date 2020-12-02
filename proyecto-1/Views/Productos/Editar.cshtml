@@ -1,0 +1,47 @@
+﻿@model proyecto_1.Models.ViewModel.EditarProductoViewModel
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar</h2>
+
+<div class="row">
+    <div class="col-md-12">
+
+        @using (Html.BeginForm("Editar", "Productos", FormMethod.Post, new { role = "form", @class = "" }))
+        {
+            @Html.AntiForgeryToken() //arroja excepcion no controlada
+
+
+
+            @Html.ValidationMessage("error", new{ @class = "text-danger" })
+
+           @Html.HiddenFor(d=>d.id)
+
+
+            @Html.LabelFor(d => d.descripcion)
+            @Html.TextBoxFor(d => d.descripcion, new{ @class = "form-control" })
+
+
+            @Html.LabelFor(d => d.stock)
+            @Html.TextBoxFor(d => d.stock, new{ @class = "form-control" })
+
+
+            @Html.LabelFor(d => d.precio)
+            @Html.TextBoxFor(d => d.precio, new{ @class = "form-control" })
+
+            @Html.LabelFor(d => d.id_provedor)
+            @Html.TextBoxFor(d => d.id_provedor, new{ @class = "form-control" })
+
+
+
+            <div style="text-align:right"  class="boton">
+                <input type="submit" class="btn btn-primary" value="Editar" />
+
+            </div>
+
+        }
+    </div>
+
+</div>
+

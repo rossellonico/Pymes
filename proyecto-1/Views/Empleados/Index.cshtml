@@ -1,0 +1,67 @@
+﻿@model List<proyecto_1.Models.ViewModel.ListaEmpleadosViewModel>
+@{
+    ViewBag.Title = "Empleados";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div  class="boton">
+        <input type="submit" value="Agregar" class="btn btn-primary" onclick="document.location.href= '@Url.Content("~/Empleados/Crear")'"/>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Cargo</th>
+                <th>  </th>
+            </tr>
+
+            @foreach(var oEmpleado in Model)
+            {
+        <tr>
+            <td>@oEmpleado.id_empleado </td>
+            <td>@oEmpleado.nombre </td>
+            <td>@oEmpleado.apellido </td>
+            <td>@oEmpleado.cargo </td>
+            <td>
+                <input type="submit" value="Editar" class="btn btn-success" onclick="document.location.href='@Url.Content("~/Empleados/Editar/"+ oEmpleado.id_empleado)'" />
+                <input type="submit" value="Eliminar" class="btn btn-danger" onclick="jsDelete(@oEmpleado.id_empleado);" />
+            </td>
+          
+        </tr>
+            }
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+
+    function jsDelete(id) {
+        if (confirm("esta seguro que desa confirmar?")) {
+            url = "@Url.Content("~/Empleados/Eliminar")" + "/" + id;
+
+            $.post(url, function (data) {
+                if (data == "1") {
+                    document.location.href = "@Url.Content("~/Empleados")"
+                } else {
+                    alert("ocurrio un problema al eliminar el empleado")
+                }
+            })
+        }
+    }
+
+
+
+
+</script>
+
+

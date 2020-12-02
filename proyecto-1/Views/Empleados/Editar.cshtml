@@ -1,0 +1,54 @@
+﻿@model proyecto_1.Models.ViewModel.EditarEmpleadoViewModel
+@{
+    ViewBag.Title = "Editar Usuario";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-12">
+
+        @using (Html.BeginForm("Editar", "Empleados", FormMethod.Post, new { role = "form", @class = "" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(d => d.id_empleado)
+
+            @Html.ValidationMessage("error", new { @class = "text-danger" })
+
+
+            if (Session.Count > 1 && (int)Session["tipo"] == 1)
+            {
+                @Html.LabelFor(d => d.id_tipo)
+                @Html.TextBoxFor(d => d.id_tipo, new { @class = "form-control" })
+
+            }
+
+
+            @Html.LabelFor(d => d.nombre)
+            @Html.TextBoxFor(d => d.nombre, new { @class = "form-control" })
+
+
+            @Html.LabelFor(d => d.apellido)
+            @Html.TextBoxFor(d => d.apellido, new { @class = "form-control" })
+
+            @Html.LabelFor(d => d.dni)
+            @Html.TextBoxFor(d => d.dni, new { @class = "form-control" })
+
+            @Html.LabelFor(d => d.password)
+            @Html.PasswordFor(d => d.password, new { @class = "form-control" })
+
+
+            @Html.LabelFor(d => d.Confirmarpassword)
+            @Html.PasswordFor(d => d.Confirmarpassword, new { @class = "form-control" })
+
+            <div style="text-align:right" class="boton">
+                <input type="submit" class="btn btn-primary" value="Editar" />
+
+            </div>
+
+        }
+    </div>
+
+        </div>
+

@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "VerCarrito";
+    double total = 0;
+}
+
+<h2>VerCarrito</h2>
+
+
+<div class="row">
+    <div class="col-lg-12">
+
+
+
+
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Descripcion</th>
+
+                <th>Precio</th>
+                <th>cantidad</th>
+                <th>Sub Total</th>
+                <th></th>
+            </tr>
+
+            @if (Session["carrito"] != null)
+            {
+                foreach (var item in Session["carrito"] as List<proyecto_1.Models.CarritoItem>)
+                {
+                    total += (double)(item.Producto.precio * item.Cantidad);
+
+                    <tr>
+                        <td>@item.Producto.id_producto</td>
+                        <td>@item.Producto.descripcion</td>
+                        <td> $ @Convert.ToDecimal(@item.Producto.precio).ToString("#0,00")</td>
+                        <td>@item.Cantidad</td>
+                        <td> @item.Cantidad*@item.Producto.precio</td>
+                        <td><input type="submit" value="X" class="btn btn-danger" onclick="jsEliminarItem(@item.Producto.id_producto);" /></td>
+
+                    </tr>
+
+
+                }
+
+            }
+            <tfoot>
+                <tr>
+                    <th colspan="4">Total</th>
+                    <th> $ @Convert.ToDecimal(@total).ToString("#0,00")</th>
+                </tr>
+            </tfoot>
+
+
+
+        </table>
+
+
+        <div style="text-align:left" class="boton">
+            <input type="submit" class="btn btn-success" value="Seguir comprando" onclick="document.location.href='@Url.Content("~/Ventas/Registrar")'" />
+
+        </div>
+        <div style="text-align:right" class="boton">
+            <input type="submit" class="btn btn-primary" value="Fnalizar" onclick="document.location.href='@Url.Content("~/Ventas/Registrar")'" />
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+</div>
+
+<script>
+
+
+
+
+     function jsEliminarItem(id) {
+
+                url = "@Url.Content("~/Carrito/EliminarItem")" + "/" + id;
+
+            $.post(url, function (data)
+            {
+                if (data == "1")
+                {
+                      document.location.href = "@Url.Content("~/Ventas/VerCarrito")"
+                }
+                else
+                {
+                        alert("ocurrio un problema al eliminar el Item del carrito")
+                }
+            })
+
+     }
+</script>

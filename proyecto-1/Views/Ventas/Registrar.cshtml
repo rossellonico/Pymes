@@ -1,0 +1,76 @@
+﻿@model List<proyecto_1.Models.ViewModel.ListaProductosVentasViewModel>
+@{
+    ViewBag.Title = "Registrar";
+  
+}
+
+<h2>Registrar</h2>
+
+<div class="row">
+    <div class="col-lg-12">
+
+
+
+
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Descripcion</th>
+                <th>Stock</th>
+                <th>Precio</th>
+                <th></th>
+            </tr>
+
+
+
+            @foreach (var oVenta in Model)
+            {
+                <tr>
+                    <td>@oVenta.id </td>
+                    <td>@oVenta.descripcion </td>
+                    <td>@oVenta.stock </td>
+                    <td> $ @Convert.ToDecimal(oVenta.precio).ToString("#0,00") </td>
+                    <td><input type="submit" value="Agregar" class="btn btn-success" onclick="jsAgregar(@oVenta.id);" /></td>
+
+                </tr>
+            }
+
+
+        </table>
+
+
+        <div style="text-align:right" class="boton">
+            <input type="submit" class="btn btn-primary" value="Siguiente" onclick="document.location.href='@Url.Content("~/Ventas/VerCarrito")'" />
+
+        </div>
+
+
+
+    </div>
+
+   
+
+</div>
+<script>
+
+
+
+
+     function jsAgregar(id) {
+       
+                url = "@Url.Content("~/Carrito/AgregarCarrito")" + "/" + id;
+
+            $.post(url, function (data)
+            {
+                if (data == "1")
+                {
+                      document.location.href = "@Url.Content("~/Ventas/Registrar")"
+                }
+                else
+                {
+                        alert("ocurrio un problema al eliminar el Proveedor")
+                }
+            })
+         
+     }
+</script>

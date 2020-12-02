@@ -1,0 +1,68 @@
+﻿@model List<proyecto_1.Models.ViewModel.ListaProveedoresViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div class="row">
+    <div class="boton">
+        <input type="submit" value="Agregar" class="btn btn-primary" onclick="document.location.href= '@Url.Content("~/Proveedores/Crear")'" />
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Razon Social</th>
+                <th>Email</th>
+                <th>Telefono</th>
+                <th>  </th>
+            </tr>
+
+            @foreach (var oProveedor in Model)
+            {
+                <tr>
+                    <td>@oProveedor.id </td>
+                    <td>@oProveedor.razon_social </td>
+                    <td>@oProveedor.email </td>
+                    <td>@oProveedor.telefono</td>
+                    <td>
+
+                        @if (Session.Count > 1 && (int)Session["tipo"] == 1)
+                        {
+                            <input type="submit" value="Editar" class="btn btn-success" onclick="document.location.href='@Url.Content("~/Proveedores/Editar/" + oProveedor.id)'" />
+                            <input type="submit" value="Eliminar" class="btn btn-danger" onclick="jsDelete(@oProveedor.id);" />
+                        }
+                    </td>
+
+                </tr>
+            }
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+     function jsDelete(id) {
+         if (confirm("esta seguro que desa confirmar?"))
+         {
+                url = "@Url.Content("~/Proveedores/Eliminar")" + "/" + id;
+
+            $.post(url, function (data)
+            {
+                if (data == "1")
+                {
+                      document.location.href = "@Url.Content("~/Proveedores")"
+                }
+                else
+                {
+                        alert("ocurrio un problema al eliminar el Proveedor")
+                }
+            })
+         }
+     }
+</script>
