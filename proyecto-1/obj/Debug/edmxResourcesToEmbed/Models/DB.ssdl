@@ -16,6 +16,9 @@
     <Property Name="nombre" Type="char" MaxLength="20" Nullable="false" />
     <Property Name="direccion" Type="char" MaxLength="50" Nullable="false" />
     <Property Name="telefono" Type="int" Nullable="false" />
+    <Property Name="estado" Type="char" MaxLength="1" />
+    <Property Name="CUIT" Type="char" MaxLength="11" />
+    <Property Name="IVA" Type="char" MaxLength="2" />
   </EntityType>
   <EntityType Name="comercio">
     <Key>

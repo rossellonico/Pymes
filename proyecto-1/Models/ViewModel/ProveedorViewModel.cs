@@ -19,7 +19,6 @@ namespace proyecto_1.Models.ViewModel
         public string email { get; set; }
 
         [Required]
-
         [Display(Name = "Telefono")]
         public int telefono { get; set; }
 

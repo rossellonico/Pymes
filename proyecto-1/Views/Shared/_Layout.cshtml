@@ -27,6 +27,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
                     <li>@Html.ActionLink("Provedores", "Index", "Proveedores")</li>
                     @if (Session.Count > 1 && (int)Session["tipo"] == 1)
                     {

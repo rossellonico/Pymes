@@ -13,6 +13,9 @@
     <EntitySetMapping Name="clientes">
       <EntityTypeMapping TypeName="practicaprofesionalModel.clientes">
         <MappingFragment StoreEntitySet="clientes">
+          <ScalarProperty Name="IVA" ColumnName="IVA" />
+          <ScalarProperty Name="CUIT" ColumnName="CUIT" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="direccion" ColumnName="direccion" />

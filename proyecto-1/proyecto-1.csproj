@@ -131,6 +131,7 @@
     <Compile Include="Controllers\AccesoController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\CerrarController.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\EmpleadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
@@ -193,11 +194,13 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModel\EmpleadoViewModel.cs" />
+    <Compile Include="Models\ViewModel\ListaClientesViewModel.cs" />
     <Compile Include="Models\ViewModel\ListaEmpleadosViewModel.cs" />
     <Compile Include="Models\ViewModel\ListaProductosVentasViewModel.cs" />
     <Compile Include="Models\ViewModel\ListaProductosViewModel.cs" />
     <Compile Include="Models\ViewModel\ListaProveedoresViewModel.cs" />
     <Compile Include="Models\ViewModel\ProductoViewModel.cs" />
+    <Compile Include="Models\ViewModel\ClienteViewModel.cs" />
     <Compile Include="Models\ViewModel\ProveedorViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -268,6 +271,9 @@
     <Content Include="Views\Ventas\Index.cshtml" />
     <Content Include="Views\Ventas\Registrar.cshtml" />
     <Content Include="Views\Ventas\VerCarrito.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\Clientes\Crear.cshtml" />
+    <Content Include="Views\Clientes\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

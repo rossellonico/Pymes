@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="practicaprofesionalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="practicaprofesionalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="cliente_comercio">
           <Key>
             <PropertyRef Name="id_cliente_comercio" />
@@ -21,6 +21,9 @@
           <Property Name="nombre" Type="char" MaxLength="20" Nullable="false" />
           <Property Name="direccion" Type="char" MaxLength="50" Nullable="false" />
           <Property Name="telefono" Type="int" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="CUIT" Type="char" MaxLength="11" />
+          <Property Name="IVA" Type="char" MaxLength="2" />
         </EntityType>
         <EntityType Name="comercio">
           <Key>
@@ -373,8 +376,7 @@
             <End Role="proveedores_comercios" EntitySet="proveedores_comercios" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="practicaprofesionalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -398,6 +400,9 @@
           <Property Name="telefono" Type="Int32" Nullable="false" />
           <NavigationProperty Name="cliente_comercio" Relationship="Self.FK__cliente_c__id_cl__3F466844" FromRole="clientes" ToRole="cliente_comercio" />
           <NavigationProperty Name="facturas" Relationship="Self.FK__facturas__id_cli__33D4B598" FromRole="clientes" ToRole="facturas" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CUIT" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="IVA" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="comercio">
           <Key>
@@ -794,6 +799,9 @@
           <EntitySetMapping Name="clientes">
             <EntityTypeMapping TypeName="practicaprofesionalModel.clientes">
               <MappingFragment StoreEntitySet="clientes">
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="CUIT" ColumnName="CUIT" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />

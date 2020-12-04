@@ -1,0 +1,69 @@
+﻿@model List<proyecto_1.Models.ViewModel.ListaClientesViewModel>
+@{
+    ViewBag.Title = "Clientes";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="boton">
+        <input type="submit" value="Agregar" class="btn btn-primary" onclick="document.location.href= '@Url.Content("~/Clientes/Crear")'" />
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>CUIT</th>
+                <th>IVA</th>
+                <th>  </th>
+            </tr>
+
+            @foreach (var oClientes in Model)
+            {
+        <tr>
+            <td>@oClientes.id_cliente </td>
+            <td>@oClientes.nombre </td>
+            <td>@oClientes.direccion </td>
+            <td>@oClientes.telefono </td>
+            <td>@oClientes.CUIT </td>
+            <td>@oClientes.IVA </td>
+            <td>
+                <input type="submit" value="Editar" class="btn btn-success" onclick="document.location.href='@Url.Content("~/Clientes/Editar/"+ oClientes.id_cliente)'" />
+                <input type="submit" value="Eliminar" class="btn btn-danger" onclick="jsDelete(@oClientes.id_cliente);" />
+            </td>
+
+        </tr>
+            }
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+
+    function jsDelete(id) {
+        if (confirm("esta seguro que desa confirmar?")) {
+            url = "@Url.Content("~/Clientes/Eliminar")" + "/" + id;
+
+            $.post(url, function (data) {
+                if (data == "1") {
+                    document.location.href = "@Url.Content("~/Clientes")"
+                } else {
+                    alert("ocurrio un problema al eliminar el cliente")
+                }
+            })
+        }
+    }
+
+
+
+
+</script>

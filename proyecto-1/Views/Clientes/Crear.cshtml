@@ -1,0 +1,47 @@
+﻿@model proyecto_1.Models.ViewModel.ClienteViewModel
+@{
+    ViewBag.Title = "Crear";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-12">
+
+        @using (Html.BeginForm("Crear", "Clientes", FormMethod.Post, new { role = "form", @class = "" }))
+        {
+            @Html.AntiForgeryToken() //arroja excepcion no controlada
+        
+
+            @Html.ValidationMessage("error", new { @class = "text-danger" })
+
+            
+
+            @Html.LabelFor(d => d.nombre)
+            @Html.TextBoxFor(d => d.nombre, new { @class = "form-control" })
+         
+            
+            @Html.LabelFor(d => d.direccion)
+            @Html.TextBoxFor(d => d.nombre, new { @class = "form-control" })
+
+          
+            @Html.LabelFor(d => d.telefono)
+            @Html.TextBoxFor(d => d.telefono, new { @class = "form-control" })
+        
+            @Html.LabelFor(d => d.CUIT)
+            @Html.TextBoxFor(d => d.CUIT, new { @class = "form-control" })
+        
+            @Html.LabelFor(d => d.IVA)
+            @Html.TextBoxFor(d => d.IVA, new { @class = "form-control" })
+        
+
+                <div style="text-align:right" class="boton">
+                    <input type="submit" class="btn btn-primary" value="Crear" />
+
+                </div>
+
+          }
+    </div>
+
+</div>
+

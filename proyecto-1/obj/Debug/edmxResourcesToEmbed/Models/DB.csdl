@@ -20,6 +20,9 @@
     <Property Name="telefono" Type="Int32" Nullable="false" />
     <NavigationProperty Name="cliente_comercio" Relationship="Self.FK__cliente_c__id_cl__3F466844" FromRole="clientes" ToRole="cliente_comercio" />
     <NavigationProperty Name="facturas" Relationship="Self.FK__facturas__id_cli__33D4B598" FromRole="clientes" ToRole="facturas" />
+    <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CUIT" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+    <Property Name="IVA" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
   </EntityType>
   <EntityType Name="comercio">
     <Key>

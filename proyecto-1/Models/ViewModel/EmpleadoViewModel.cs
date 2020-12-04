@@ -9,7 +9,7 @@ namespace proyecto_1.Models.ViewModel
     public class EmpleadoViewModel
     {
         [Required]
-        [Display(Name ="tipo de cargo: 1 - getente | 2 - empleado")]
+        [Display(Name ="tipo de cargo: 1 - gerente | 2 - empleado")]
        public int id_tipo { get; set; }
 
         [Required]
