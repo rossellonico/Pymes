@@ -1,4 +1,4 @@
-﻿@model proyecto_1.Models.ViewModel.EditarEmpleadoViewModel
+﻿@model proyecto_1.Models.ViewModel.EditarEmpleadoPropioViewModel
 @{
     ViewBag.Title = "Editar Usuario";
 }
@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-md-12">
 
-        @using (Html.BeginForm("Editar", "Empleados", FormMethod.Post, new { role = "form", @class = "" }))
+        @using (Html.BeginForm("Editar_propio", "Empleados", FormMethod.Post, new { role = "form", @class = "" }))
         {
             @Html.AntiForgeryToken()
 
@@ -17,7 +17,7 @@
             @Html.ValidationMessage("error", new { @class = "text-danger" })
 
 
-            if ((int)Session["tipo"] != 3)
+            if (Session.Count > 1 && (int)Session["tipo"] == 1)
             {
                 @Html.LabelFor(d => d.id_tipo)
                 <br />@Html.ValidationMessageFor(d => d.id_tipo, "", new { @class = "text-danger" })
@@ -39,15 +39,17 @@
             <br />@Html.ValidationMessageFor(d => d.dni, "", new { @class = "text-danger" })
             @Html.TextBoxFor(d => d.dni, new { @class = "form-control" })
 
-            /*
+
             @Html.LabelFor(d => d.password)
+            <br />@Html.ValidationMessageFor(d => d.password, "", new { @class = "text-danger" })
             @Html.PasswordFor(d => d.password, new { @class = "form-control" })
 
 
             @Html.LabelFor(d => d.Confirmarpassword)
+            <br />@Html.ValidationMessageFor(d => d.Confirmarpassword, "", new { @class = "text-danger" })
             @Html.PasswordFor(d => d.Confirmarpassword, new { @class = "form-control" })
 
-            */
+
             <div style="text-align:right" class="boton">
                 <input type="submit" class="btn btn-primary" value="Editar" />
 

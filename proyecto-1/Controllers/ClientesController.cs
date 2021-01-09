@@ -54,8 +54,10 @@ namespace proyecto_1.Controllers
 
         [HttpGet]
         public ActionResult Crear()
+        
         {
-            return View();
+            
+                return View();
         }
 
         [ValidateAntiForgeryToken]

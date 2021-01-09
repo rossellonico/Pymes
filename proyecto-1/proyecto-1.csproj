@@ -132,6 +132,7 @@
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\CerrarController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\ComerciosController.cs" />
     <Compile Include="Controllers\EmpleadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
@@ -195,10 +196,12 @@
     </Compile>
     <Compile Include="Models\ViewModel\EmpleadoViewModel.cs" />
     <Compile Include="Models\ViewModel\ListaClientesViewModel.cs" />
+    <Compile Include="Models\ViewModel\ListaComerciosViewModel.cs" />
     <Compile Include="Models\ViewModel\ListaEmpleadosViewModel.cs" />
     <Compile Include="Models\ViewModel\ListaProductosVentasViewModel.cs" />
     <Compile Include="Models\ViewModel\ListaProductosViewModel.cs" />
     <Compile Include="Models\ViewModel\ListaProveedoresViewModel.cs" />
+    <Compile Include="Models\ViewModel\ComercioViewModel.cs" />
     <Compile Include="Models\ViewModel\ProductoViewModel.cs" />
     <Compile Include="Models\ViewModel\ClienteViewModel.cs" />
     <Compile Include="Models\ViewModel\ProveedorViewModel.cs" />
@@ -274,6 +277,10 @@
     <Content Include="Views\Clientes\Index.cshtml" />
     <Content Include="Views\Clientes\Crear.cshtml" />
     <Content Include="Views\Clientes\Editar.cshtml" />
+    <Content Include="Views\Comercios\Index.cshtml" />
+    <Content Include="Views\Comercios\Crear.cshtml" />
+    <Content Include="Views\Comercios\Editar.cshtml" />
+    <Content Include="Views\Empleados\Editar_propio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

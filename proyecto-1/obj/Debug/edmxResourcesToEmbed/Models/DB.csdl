@@ -17,20 +17,20 @@
     <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nombre" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="direccion" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="telefono" Type="Int32" Nullable="false" />
     <NavigationProperty Name="cliente_comercio" Relationship="Self.FK__cliente_c__id_cl__3F466844" FromRole="clientes" ToRole="cliente_comercio" />
     <NavigationProperty Name="facturas" Relationship="Self.FK__facturas__id_cli__33D4B598" FromRole="clientes" ToRole="facturas" />
     <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
     <Property Name="CUIT" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
     <Property Name="IVA" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="telefono" Type="String" Nullable="false" />
   </EntityType>
   <EntityType Name="comercio">
     <Key>
       <PropertyRef Name="id_comercio" />
     </Key>
     <Property Name="id_comercio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="razon_social" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="CUIT" Type="Int32" />
+    <Property Name="razon_social" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="CUIT" Type="String" MaxLength="11" Unicode="false" FixedLength="true" />
     <Property Name="IVA" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
     <Property Name="Ingresos_brutos" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
     <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
@@ -39,6 +39,7 @@
     <NavigationProperty Name="productos" Relationship="Self.FK__productos__id_co__30F848ED" FromRole="comercio" ToRole="productos" />
     <NavigationProperty Name="ventas" Relationship="Self.FK__ventas__id_comer__3A81B327" FromRole="comercio" ToRole="ventas" />
     <NavigationProperty Name="proveedores_comercios" Relationship="Self.FK2" FromRole="comercio" ToRole="proveedores_comercios" />
+    <Property Name="estado" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
   </EntityType>
   <EntityType Name="empleado">
     <Key>
@@ -89,7 +90,7 @@
     <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="stock" Type="Int32" Nullable="false" />
     <Property Name="precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-    <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
     <NavigationProperty Name="comercio" Relationship="Self.FK__productos__id_co__30F848ED" FromRole="productos" ToRole="comercio" />
     <NavigationProperty Name="factura_productos" Relationship="Self.FK__factura_p__id_pr__37A5467C" FromRole="productos" ToRole="factura_productos" />
     <NavigationProperty Name="proveedores_productos" Relationship="Self.FK__proveedor__id_pr__440B1D61" FromRole="productos" ToRole="proveedores_productos" />

@@ -14,28 +14,47 @@
 
 <div class="row">
     <div class="col-lg-12">
+
+        @if ((string)TempData["Referrer"] == "SaveRegister")
+        {
+            <div class="alert alert-success">
+                <strong>Su carga se realizo exitosamente</strong>
+            </div>
+        }
+
         <table class="table">
             <tr>
                 <th>#</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Cargo</th>
+
+                @if ((int)Session["tipo"] == 3)
+                {
+                    <th>Comercio</th>
+                }
+
                 <th>  </th>
             </tr>
 
-            @foreach(var oEmpleado in Model)
+            @foreach (var oEmpleado in Model)
             {
-        <tr>
-            <td>@oEmpleado.id_empleado </td>
-            <td>@oEmpleado.nombre </td>
-            <td>@oEmpleado.apellido </td>
-            <td>@oEmpleado.cargo </td>
-            <td>
-                <input type="submit" value="Editar" class="btn btn-success" onclick="document.location.href='@Url.Content("~/Empleados/Editar/"+ oEmpleado.id_empleado)'" />
-                <input type="submit" value="Eliminar" class="btn btn-danger" onclick="jsDelete(@oEmpleado.id_empleado);" />
-            </td>
-          
-        </tr>
+                <tr>
+                    <td>@oEmpleado.id_empleado </td>
+                    <td>@oEmpleado.nombre </td>
+                    <td>@oEmpleado.apellido </td>
+                    <td>@oEmpleado.cargo </td>
+
+                    @if ((int)Session["tipo"] == 3)
+                    {
+                        <td>@oEmpleado.razon_social </td>
+                    }
+                    <td>
+                        <input type="submit" value="Editar" class="btn btn-success" onclick="document.location.href='@Url.Content("~/Empleados/Editar/"+ oEmpleado.id_empleado)'" />
+                        <input type="submit" value="Eliminar" class="btn btn-danger" onclick="jsDelete(@oEmpleado.id_empleado);" />
+                    </td>
+
+                </tr>
             }
         </table>
 

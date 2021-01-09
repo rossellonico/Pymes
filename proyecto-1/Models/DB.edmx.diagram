@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="6445ef00e91c48c7a0ee7cc4e783594b" Name="Diagram1">
         <EntityTypeShape EntityType="practicaprofesionalModel.cliente_comercio" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="practicaprofesionalModel.clientes" Width="1.5" PointX="0.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="practicaprofesionalModel.clientes" Width="1.5" PointX="0.5" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="practicaprofesionalModel.comercio" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="practicaprofesionalModel.empleado" Width="1.5" PointX="6" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="practicaprofesionalModel.factura_productos" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
@@ -16,7 +16,7 @@
         <EntityTypeShape EntityType="practicaprofesionalModel.proveedores_comercios" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="practicaprofesionalModel.proveedores_productos" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
         <EntityTypeShape EntityType="practicaprofesionalModel.tipo_empleado" Width="1.5" PointX="3.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="practicaprofesionalModel.ventas" Width="1.5" PointX="8.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="practicaprofesionalModel.ventas" Width="1.5" PointX="8.75" PointY="7.625" IsExpanded="true" />
         <AssociationConnector Association="practicaprofesionalModel.FK__cliente_c__id_cl__3F466844" ManuallyRouted="false" />
         <AssociationConnector Association="practicaprofesionalModel.FK__cliente_c__id_co__403A8C7D" ManuallyRouted="false" />
         <AssociationConnector Association="practicaprofesionalModel.FK__facturas__id_cli__33D4B598" ManuallyRouted="false" />

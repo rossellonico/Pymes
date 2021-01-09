@@ -67,6 +67,15 @@ namespace proyecto_1.Controllers
 
                 db.SaveChanges();
 
+                int newIdentityValue = oProducto.id_producto;
+
+                //insert en tabla proveedores_productos
+                proveedores_productos p_productos = new proveedores_productos();
+                p_productos.id_producto = newIdentityValue;
+                p_productos.id_proveedor = model.id_proveedor;
+
+                db.proveedores_productos.Add(p_productos);
+                db.SaveChanges();
 
             }
 
@@ -80,10 +89,11 @@ namespace proyecto_1.Controllers
             using (var db = new practicaprofesionalEntities1())
             {
                 var oProducto = db.productos.Find(id);
+                
                 model.descripcion = oProducto.descripcion;
                 model.stock = oProducto.stock;
                 model.precio = oProducto.precio;
-                model.id_provedor = oProducto.id_comercio;
+                model.id_proveedor = oProducto.id_comercio;
 
             }
 

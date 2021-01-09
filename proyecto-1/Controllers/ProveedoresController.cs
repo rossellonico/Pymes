@@ -140,6 +140,7 @@ namespace proyecto_1.Controllers
                 db.Entry(oProveedor).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
 
+
             }
 
             return Redirect(Url.Content("~/Proveedores"));

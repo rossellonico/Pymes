@@ -13,24 +13,25 @@
     <EntitySetMapping Name="clientes">
       <EntityTypeMapping TypeName="practicaprofesionalModel.clientes">
         <MappingFragment StoreEntitySet="clientes">
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
           <ScalarProperty Name="IVA" ColumnName="IVA" />
           <ScalarProperty Name="CUIT" ColumnName="CUIT" />
           <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="direccion" ColumnName="direccion" />
-          <ScalarProperty Name="telefono" ColumnName="telefono" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="comercio">
       <EntityTypeMapping TypeName="practicaprofesionalModel.comercio">
         <MappingFragment StoreEntitySet="comercio">
+          <ScalarProperty Name="Ingresos_brutos" ColumnName="Ingresos_brutos" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="id_comercio" ColumnName="id_comercio" />
           <ScalarProperty Name="razon_social" ColumnName="razon_social" />
           <ScalarProperty Name="CUIT" ColumnName="CUIT" />
           <ScalarProperty Name="IVA" ColumnName="IVA" />
-          <ScalarProperty Name="Ingresos_brutos" ColumnName="Ingresos_brutos" />
           <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
         </MappingFragment>
       </EntityTypeMapping>

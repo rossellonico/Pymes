@@ -12,11 +12,9 @@
         {
             @Html.AntiForgeryToken() //arroja excepcion no controlada
 
-
-
             @Html.ValidationMessage("error", new{ @class = "text-danger" })
 
-           @Html.HiddenFor(d=>d.id)
+            @Html.HiddenFor(d=>d.id)
 
 
             @Html.LabelFor(d => d.descripcion)
@@ -30,8 +28,8 @@
             @Html.LabelFor(d => d.precio)
             @Html.TextBoxFor(d => d.precio, new{ @class = "form-control" })
 
-            @Html.LabelFor(d => d.id_provedor)
-            @Html.TextBoxFor(d => d.id_provedor, new{ @class = "form-control" })
+            @Html.LabelFor(d => d.id_proveedor)
+            @Html.TextBoxFor(d => d.id_proveedor, new{ @class = "form-control" })
 
 
 

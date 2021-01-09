@@ -13,6 +13,8 @@ namespace proyecto_1.Models.ViewModel
         public int stock { get; set; }
         public decimal precio { get; set; }
 
+        public int id_proveedor { get; set; }
+
 
     }
 }

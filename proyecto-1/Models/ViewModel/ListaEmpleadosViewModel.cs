@@ -15,5 +15,10 @@ namespace proyecto_1.Models.ViewModel
 
         public string cargo { get; set; }
 
+        public int comercio { get; set; }
+
+        public string razon_social { get; set; }
+
+        public string password { get; set; }
     }
 }

@@ -15,21 +15,22 @@
     <Property Name="id_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre" Type="char" MaxLength="20" Nullable="false" />
     <Property Name="direccion" Type="char" MaxLength="50" Nullable="false" />
-    <Property Name="telefono" Type="int" Nullable="false" />
     <Property Name="estado" Type="char" MaxLength="1" />
     <Property Name="CUIT" Type="char" MaxLength="11" />
     <Property Name="IVA" Type="char" MaxLength="2" />
+    <Property Name="telefono" Type="char" MaxLength="13" />
   </EntityType>
   <EntityType Name="comercio">
     <Key>
       <PropertyRef Name="id_comercio" />
     </Key>
     <Property Name="id_comercio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="razon_social" Type="char" MaxLength="50" Nullable="false" />
-    <Property Name="CUIT" Type="int" />
+    <Property Name="razon_social" Type="char" MaxLength="50" />
     <Property Name="IVA" Type="char" MaxLength="2" />
     <Property Name="Ingresos_brutos" Type="char" MaxLength="16" />
     <Property Name="fecha_inicio" Type="date" />
+    <Property Name="CUIT" Type="char" MaxLength="11" />
+    <Property Name="estado" Type="char" MaxLength="1" />
   </EntityType>
   <EntityType Name="empleado">
     <Key>
@@ -72,7 +73,7 @@
     <Property Name="descripcion" Type="char" MaxLength="50" Nullable="false" />
     <Property Name="stock" Type="int" Nullable="false" />
     <Property Name="precio" Type="money" Nullable="false" />
-    <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="estado" Type="char" MaxLength="1" />
   </EntityType>
   <EntityType Name="proveedores">
     <Key>
@@ -129,19 +130,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__cliente_c__id_co__403A8C7D">
-    <End Role="comercio" Type="Self.comercio" Multiplicity="1" />
-    <End Role="cliente_comercio" Type="Self.cliente_comercio" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="comercio">
-        <PropertyRef Name="id_comercio" />
-      </Principal>
-      <Dependent Role="cliente_comercio">
-        <PropertyRef Name="id_comercio" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__empleado__id_com__2D27B809">
+  <Association Name="FK__empleado__id_com__3D2915A8">
     <End Role="comercio" Type="Self.comercio" Multiplicity="1" />
     <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
     <ReferentialConstraint>
@@ -153,7 +142,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__empleado__id_tip__2E1BDC42">
+  <Association Name="FK__empleado__id_tip__3E1D39E1">
     <End Role="tipo_empleado" Type="Self.tipo_empleado" Multiplicity="1" />
     <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
     <ReferentialConstraint>
@@ -201,18 +190,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__productos__id_co__30F848ED">
-    <End Role="comercio" Type="Self.comercio" Multiplicity="1" />
-    <End Role="productos" Type="Self.productos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="comercio">
-        <PropertyRef Name="id_comercio" />
-      </Principal>
-      <Dependent Role="productos">
-        <PropertyRef Name="id_comercio" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__proveedor__id_pr__4316F928">
     <End Role="proveedores" Type="Self.proveedores" Multiplicity="1" />
     <End Role="proveedores_productos" Type="Self.proveedores_productos" Multiplicity="*" />
@@ -234,30 +211,6 @@
       </Principal>
       <Dependent Role="proveedores_productos">
         <PropertyRef Name="id_producto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__ventas__id_comer__3A81B327">
-    <End Role="comercio" Type="Self.comercio" Multiplicity="1" />
-    <End Role="ventas" Type="Self.ventas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="comercio">
-        <PropertyRef Name="id_comercio" />
-      </Principal>
-      <Dependent Role="ventas">
-        <PropertyRef Name="id_comercio" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__ventas__id_emple__3B75D760">
-    <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
-    <End Role="ventas" Type="Self.ventas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="empleado">
-        <PropertyRef Name="id_empleado" />
-      </Principal>
-      <Dependent Role="ventas">
-        <PropertyRef Name="id_empleado" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -285,18 +238,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK2">
-    <End Role="comercio" Type="Self.comercio" Multiplicity="1" />
-    <End Role="proveedores_comercios" Type="Self.proveedores_comercios" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="comercio">
-        <PropertyRef Name="id_comercio" />
-      </Principal>
-      <Dependent Role="proveedores_comercios">
-        <PropertyRef Name="id_comercio" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="practicaprofesionalModelStoreContainer">
     <EntitySet Name="cliente_comercio" EntityType="Self.cliente_comercio" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="clientes" EntityType="Self.clientes" Schema="dbo" store:Type="Tables" />
@@ -314,15 +255,11 @@
       <End Role="clientes" EntitySet="clientes" />
       <End Role="cliente_comercio" EntitySet="cliente_comercio" />
     </AssociationSet>
-    <AssociationSet Name="FK__cliente_c__id_co__403A8C7D" Association="Self.FK__cliente_c__id_co__403A8C7D">
-      <End Role="comercio" EntitySet="comercio" />
-      <End Role="cliente_comercio" EntitySet="cliente_comercio" />
-    </AssociationSet>
-    <AssociationSet Name="FK__empleado__id_com__2D27B809" Association="Self.FK__empleado__id_com__2D27B809">
+    <AssociationSet Name="FK__empleado__id_com__3D2915A8" Association="Self.FK__empleado__id_com__3D2915A8">
       <End Role="comercio" EntitySet="comercio" />
       <End Role="empleado" EntitySet="empleado" />
     </AssociationSet>
-    <AssociationSet Name="FK__empleado__id_tip__2E1BDC42" Association="Self.FK__empleado__id_tip__2E1BDC42">
+    <AssociationSet Name="FK__empleado__id_tip__3E1D39E1" Association="Self.FK__empleado__id_tip__3E1D39E1">
       <End Role="tipo_empleado" EntitySet="tipo_empleado" />
       <End Role="empleado" EntitySet="empleado" />
     </AssociationSet>
@@ -338,10 +275,6 @@
       <End Role="clientes" EntitySet="clientes" />
       <End Role="facturas" EntitySet="facturas" />
     </AssociationSet>
-    <AssociationSet Name="FK__productos__id_co__30F848ED" Association="Self.FK__productos__id_co__30F848ED">
-      <End Role="comercio" EntitySet="comercio" />
-      <End Role="productos" EntitySet="productos" />
-    </AssociationSet>
     <AssociationSet Name="FK__proveedor__id_pr__4316F928" Association="Self.FK__proveedor__id_pr__4316F928">
       <End Role="proveedores" EntitySet="proveedores" />
       <End Role="proveedores_productos" EntitySet="proveedores_productos" />
@@ -350,24 +283,12 @@
       <End Role="productos" EntitySet="productos" />
       <End Role="proveedores_productos" EntitySet="proveedores_productos" />
     </AssociationSet>
-    <AssociationSet Name="FK__ventas__id_comer__3A81B327" Association="Self.FK__ventas__id_comer__3A81B327">
-      <End Role="comercio" EntitySet="comercio" />
-      <End Role="ventas" EntitySet="ventas" />
-    </AssociationSet>
-    <AssociationSet Name="FK__ventas__id_emple__3B75D760" Association="Self.FK__ventas__id_emple__3B75D760">
-      <End Role="empleado" EntitySet="empleado" />
-      <End Role="ventas" EntitySet="ventas" />
-    </AssociationSet>
     <AssociationSet Name="FK__ventas__id_factu__3C69FB99" Association="Self.FK__ventas__id_factu__3C69FB99">
       <End Role="facturas" EntitySet="facturas" />
       <End Role="ventas" EntitySet="ventas" />
     </AssociationSet>
     <AssociationSet Name="FK1" Association="Self.FK1">
       <End Role="proveedores" EntitySet="proveedores" />
-      <End Role="proveedores_comercios" EntitySet="proveedores_comercios" />
-    </AssociationSet>
-    <AssociationSet Name="FK2" Association="Self.FK2">
-      <End Role="comercio" EntitySet="comercio" />
       <End Role="proveedores_comercios" EntitySet="proveedores_comercios" />
     </AssociationSet>
   </EntityContainer>

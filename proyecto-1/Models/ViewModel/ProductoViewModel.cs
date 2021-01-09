@@ -25,7 +25,7 @@ namespace proyecto_1.Models.ViewModel
 
         [Required]
         [Display(Name = "Numero de proveedor")]
-        public int id_provedor { get; set; }
+        public int id_proveedor { get; set; }
     }
 
     public class EditarProductoViewModel
@@ -47,7 +47,7 @@ namespace proyecto_1.Models.ViewModel
 
         [Required]
         [Display(Name = "Numero de proveedor")]
-        public int id_provedor { get; set; }
+        public int id_proveedor { get; set; }
     }
 
 

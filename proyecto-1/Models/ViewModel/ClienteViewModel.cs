@@ -9,27 +9,28 @@ namespace proyecto_1.Models.ViewModel
 {
     public class ClienteViewModel
     {
-        [Required]
-        [StringLength(maximumLength: 20, ErrorMessage = "Nombre debe tener como maximo {0} caracteres ")]
+        [Required(ErrorMessage = "El nombre es un campo obligatorio")]
+        [StringLength(maximumLength: 20, ErrorMessage = "El {0} debe tener como maximo {1} caracteres y como minimo {2} ", MinimumLength = 3)]
         [Display(Name = "Nombre")]
         public string nombre { get; set; }
 
-        [Required]
-        [StringLength(maximumLength: 50, ErrorMessage = "Dirección debe tener como maximo {0} caracteres ")]
-        [Display(Name = "Direccion")]
+        [Required(ErrorMessage = "La dirección es un campo obligatorio")]
+        [StringLength(maximumLength: 50, ErrorMessage = "La dirección debe tener como maximo 50 caracteres ")]
+        [Display(Name = "Dirección")]
         public string direccion { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El teléfono es un campo obligatorio")]
         [Display(Name = "Telefono")]
-        public int telefono { get; set; }
+        public string telefono { get; set; }
 
         [Required]
-        [StringLength(maximumLength: 11, ErrorMessage = "CUIT debe tener como maximo {0} caracteres ")]
+        [MinLengthAttribute(11, ErrorMessage = "El CUIL debe tener 11 numeros. No poner guiones")] 
+        [StringLength(maximumLength : 11,  ErrorMessage = "El CUIL debe tener 11 numeros. No poner guiones")]
         [Display(Name = "CUIT")]
         public string CUIT { get; set; }
 
         [Required]
-        [StringLength(maximumLength: 2, ErrorMessage = "IVA debe tener como maximo {0} caracteres ")]
+        [StringLength(maximumLength: 2, ErrorMessage = "IVA debe tener como maximo 2 caracteres ")]
         [Display(Name = "IVA")]
         public string IVA { get; set; }
 
@@ -46,13 +47,13 @@ namespace proyecto_1.Models.ViewModel
         public string nombre { get; set; }
 
         [Required]
-        [StringLength(maximumLength: 50, ErrorMessage = "Dirección debe tener como maximo {0} caracteres ")]
+        [StringLength(maximumLength: 50, ErrorMessage = "{0} debe tener como maximo {1} caracteres ")]
         [Display(Name = "Direccion")]
         public string direccion { get; set; }
 
         [Required]
         [Display(Name = "Telefono")]
-        public int telefono { get; set; }
+        public string telefono { get; set; }
 
         [Required]
         [StringLength(maximumLength: 11, ErrorMessage = "CUIT debe tener como maximo {0} caracteres ")]

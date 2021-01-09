@@ -26,10 +26,11 @@ namespace proyecto_1.Models
     
         public int id_comercio { get; set; }
         public string razon_social { get; set; }
-        public Nullable<int> CUIT { get; set; }
+        public string CUIT { get; set; }
         public string IVA { get; set; }
         public string Ingresos_brutos { get; set; }
         public Nullable<System.DateTime> fecha_inicio { get; set; }
+        public string estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cliente_comercio> cliente_comercio { get; set; }

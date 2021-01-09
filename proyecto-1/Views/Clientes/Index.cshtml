@@ -35,8 +35,11 @@
             <td>@oClientes.CUIT </td>
             <td>@oClientes.IVA </td>
             <td>
-                <input type="submit" value="Editar" class="btn btn-success" onclick="document.location.href='@Url.Content("~/Clientes/Editar/"+ oClientes.id_cliente)'" />
+                @if (Session.Count > 1 && (int)Session["tipo"] == 1)
+                {
+                <input type="submit" value="Editar" class="btn btn-success" onclick="document.location.href='@Url.Content("~/Clientes/Editar/" + oClientes.id_cliente)'" />
                 <input type="submit" value="Eliminar" class="btn btn-danger" onclick="jsDelete(@oClientes.id_cliente);" />
+                }
             </td>
 
         </tr>
