@@ -27,7 +27,7 @@ namespace proyecto_1.Models
         public int id_comercio { get; set; }
         public string razon_social { get; set; }
         public string CUIT { get; set; }
-        public string IVA { get; set; }
+        public Nullable<int> IVA { get; set; }
         public string Ingresos_brutos { get; set; }
         public Nullable<System.DateTime> fecha_inicio { get; set; }
         public string estado { get; set; }
@@ -42,5 +42,6 @@ namespace proyecto_1.Models
         public virtual ICollection<ventas> ventas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<proveedores_comercios> proveedores_comercios { get; set; }
+        public virtual situacion_iva situacion_iva { get; set; }
     }
 }

@@ -56,8 +56,32 @@ namespace proyecto_1.Controllers
         public ActionResult Crear()
         
         {
+            List<ClienteViewModel> lst = null;
+            using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
+            {
+                lst = (from d in db.situacion_iva
+                       where d.id_tipo != 3
+                       select new EmpleadoViewModel
+                       {
+                           id_tipo = d.id_tipo,
+                           tipo = d.tipo
+                       }).ToList();
+            }
+
+            List<SelectListItem> items = lst.ConvertAll(d =>
+            {
+                return new SelectListItem()
+                {
+                    Text = d.tipo.ToString(),
+                    Value = d.id_tipo.ToString(),
+                    Selected = false
+
+                };
+            });
+            ViewBag.items = items;
+
+            return View();
             
-                return View();
         }
 
         [ValidateAntiForgeryToken]

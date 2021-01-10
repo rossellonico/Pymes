@@ -95,7 +95,7 @@ namespace proyecto_1.Models.ViewModel
         public string nombre { get; set; }
 
         [Required]
-        [StringLength(maximumLength: 20, ErrorMessage = "El {0} debe tener como maximo {1} caracteres y como minimo {2}", MinimumLength = 3]
+        [StringLength(maximumLength: 20, ErrorMessage = "El {0} debe tener como maximo {1} caracteres y como minimo {2}", MinimumLength = 3)]
         [Display(Name = "Apellido")]
         public string apellido { get; set; }
 

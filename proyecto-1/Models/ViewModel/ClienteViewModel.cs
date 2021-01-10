@@ -11,7 +11,7 @@ namespace proyecto_1.Models.ViewModel
     {
         [Required(ErrorMessage = "El nombre es un campo obligatorio")]
         [StringLength(maximumLength: 20, ErrorMessage = "El {0} debe tener como maximo {1} caracteres y como minimo {2} ", MinimumLength = 3)]
-        [Display(Name = "Nombre")]
+        [Display(Name = "Cliente")]
         public string nombre { get; set; }
 
         [Required(ErrorMessage = "La dirección es un campo obligatorio")]

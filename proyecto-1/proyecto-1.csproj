@@ -188,6 +188,9 @@
     <Compile Include="Models\proveedores_productos.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\situacion_iva.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tipo_empleado.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
