@@ -14,7 +14,7 @@ namespace proyecto_1.Models.ViewModel
         public string razon_social { get; set; }
 
         [Required]
-        [Display(Name = "IVA")]
+        [Display(Name = "Situacion frente al IVA")]
         public int id_IVA { get; set; }
         public string descripcion { get; set; }
 
@@ -44,9 +44,9 @@ namespace proyecto_1.Models.ViewModel
         public string razon_social { get; set; }
 
         [Required]
-        [StringLength(maximumLength: 2, ErrorMessage = "El IVA debe tener como maximo {0} caracteres ")]
-        [Display(Name = "IVA")]
-        public string IVA { get; set; }
+        [Display(Name = "Situación frente al IVA")]
+        public int id_IVA { get; set; }
+        public string descripcion { get; set; }
 
         [Required]
         [StringLength(maximumLength: 16, ErrorMessage = "Ingresos Brutos debe tener como maximo {0} caracteres ")]

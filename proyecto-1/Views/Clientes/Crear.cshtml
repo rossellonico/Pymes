@@ -1,6 +1,7 @@
 ﻿@model proyecto_1.Models.ViewModel.ClienteViewModel
 @{
     ViewBag.Title = "Crear";
+    List<SelectListItem> items = (List<SelectListItem>)ViewBag.items;
 }
 
 <h2>@ViewBag.Title</h2>
@@ -18,25 +19,25 @@
 
 
             @Html.LabelFor(d => d.nombre)
+            <br />@Html.ValidationMessageFor(d => d.nombre, "", new { @class = "text-danger" })
             @Html.TextBoxFor(d => d.nombre, new { @class = "form-control" })
-            @Html.ValidationMessageFor(d => d.nombre, "", new { @class = "text-danger" })<br />
+
 
             @Html.LabelFor(d => d.direccion)
+            <br />@Html.ValidationMessageFor(d => d.direccion, "", new { @class = "text-danger" })
             @Html.TextBoxFor(d => d.direccion, new { @class = "form-control" })
-            @Html.ValidationMessageFor(d => d.direccion, "", new { @class = "text-danger" })<br />
 
             @Html.LabelFor(d => d.telefono)
+            <br />@Html.ValidationMessageFor(d => d.telefono, "", new { @class = "text-danger" })
             @Html.TextBoxFor(d => d.telefono, new { @class = "form-control" })
-            @Html.ValidationMessageFor(d => d.telefono, "", new { @class = "text-danger" })<br />
+
 
             @Html.LabelFor(d => d.CUIT)
+            <br />@Html.ValidationMessageFor(d => d.CUIT, "", new { @class = "text-danger" })
             @Html.TextBoxFor(d => d.CUIT, new { @class = "form-control" })
-            @Html.ValidationMessageFor(d => d.CUIT, "", new { @class = "text-danger" })<br />
 
-            @Html.LabelFor(d => d.IVA)
-            @Html.TextBoxFor(d => d.IVA, new { @class = "form-control" })
-            @Html.ValidationMessageFor(d => d.IVA, "", new { @class = "text-danger" })<br />
-
+            @Html.LabelFor(d => d.id_IVA)
+            @Html.DropDownListFor(d => d.id_IVA, items, new { @class = "form-control" });
 
             <div style="text-align:right" class="boton">
                 <input type="submit" class="btn btn-primary" value="Crear" />

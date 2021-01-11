@@ -21,8 +21,9 @@
     <NavigationProperty Name="facturas" Relationship="Self.FK__facturas__id_cli__33D4B598" FromRole="clientes" ToRole="facturas" />
     <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
     <Property Name="CUIT" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
-    <Property Name="IVA" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
-    <Property Name="telefono" Type="String" Nullable="false" />
+    <Property Name="IVA" Type="Int32" />
+    <Property Name="telefono" Type="String" Unicode="false" FixedLength="true" MaxLength="13" />
+    <NavigationProperty Name="situacion_iva" Relationship="practicaprofesionalModel.FK__clientes__IVA__5224328E" FromRole="clientes" ToRole="situacion_iva" />
   </EntityType>
   <EntityType Name="comercio">
     <Key>
@@ -31,7 +32,7 @@
     <Property Name="id_comercio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="razon_social" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
     <Property Name="CUIT" Type="String" MaxLength="11" Unicode="false" FixedLength="true" />
-    <Property Name="IVA" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="IVA" Type="Int32" />
     <Property Name="Ingresos_brutos" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
     <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
     <NavigationProperty Name="cliente_comercio" Relationship="Self.FK__cliente_c__id_co__403A8C7D" FromRole="comercio" ToRole="cliente_comercio" />
@@ -40,6 +41,7 @@
     <NavigationProperty Name="ventas" Relationship="Self.FK__ventas__id_comer__3A81B327" FromRole="comercio" ToRole="ventas" />
     <NavigationProperty Name="proveedores_comercios" Relationship="Self.FK2" FromRole="comercio" ToRole="proveedores_comercios" />
     <Property Name="estado" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <NavigationProperty Name="situacion_iva" Relationship="practicaprofesionalModel.FK__comercio__IVA__531856C7" FromRole="comercio" ToRole="situacion_iva" />
   </EntityType>
   <EntityType Name="empleado">
     <Key>
@@ -401,5 +403,47 @@
       <End Role="proveedores" EntitySet="proveedores" />
       <End Role="proveedores_comercios" EntitySet="proveedores_comercios" />
     </AssociationSet>
+    <EntitySet Name="situacion_iva" EntityType="practicaprofesionalModel.situacion_iva" />
+    <AssociationSet Name="FK__clientes__IVA__5224328E" Association="practicaprofesionalModel.FK__clientes__IVA__5224328E">
+      <End Role="situacion_iva" EntitySet="situacion_iva" />
+      <End Role="clientes" EntitySet="clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__comercio__IVA__531856C7" Association="practicaprofesionalModel.FK__comercio__IVA__531856C7">
+      <End Role="situacion_iva" EntitySet="situacion_iva" />
+      <End Role="comercio" EntitySet="comercio" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="situacion_iva">
+    <Key>
+      <PropertyRef Name="id_iva" />
+    </Key>
+    <Property Name="id_iva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="clientes" Relationship="practicaprofesionalModel.FK__clientes__IVA__5224328E" FromRole="situacion_iva" ToRole="clientes" />
+    <NavigationProperty Name="comercio" Relationship="practicaprofesionalModel.FK__comercio__IVA__531856C7" FromRole="situacion_iva" ToRole="comercio" />
+  </EntityType>
+  <Association Name="FK__clientes__IVA__5224328E">
+    <End Type="practicaprofesionalModel.situacion_iva" Role="situacion_iva" Multiplicity="0..1" />
+    <End Type="practicaprofesionalModel.clientes" Role="clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="situacion_iva">
+        <PropertyRef Name="id_iva" />
+      </Principal>
+      <Dependent Role="clientes">
+        <PropertyRef Name="IVA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__comercio__IVA__531856C7">
+    <End Type="practicaprofesionalModel.situacion_iva" Role="situacion_iva" Multiplicity="0..1" />
+    <End Type="practicaprofesionalModel.comercio" Role="comercio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="situacion_iva">
+        <PropertyRef Name="id_iva" />
+      </Principal>
+      <Dependent Role="comercio">
+        <PropertyRef Name="IVA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

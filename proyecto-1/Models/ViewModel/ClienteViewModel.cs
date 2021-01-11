@@ -30,9 +30,9 @@ namespace proyecto_1.Models.ViewModel
         public string CUIT { get; set; }
 
         [Required]
-        [StringLength(maximumLength: 2, ErrorMessage = "IVA debe tener como maximo 2 caracteres ")]
-        [Display(Name = "IVA")]
-        public string IVA { get; set; }
+        [Display(Name = "Situación frente al IVA")]
+        public int id_IVA { get; set; }
+        public string descripcion { get; set; }
 
     }
 
@@ -61,9 +61,12 @@ namespace proyecto_1.Models.ViewModel
         public string CUIT { get; set; }
 
         [Required]
-        [StringLength(maximumLength: 2, ErrorMessage = "IVA debe tener como maximo {0} caracteres ")]
-        [Display(Name = "IVA")]
-        public string IVA { get; set; }
+        [Display(Name = "Situación frente al IVA")]
+        public int id_IVA { get; set; }
+
+        public string descripcion { get; set; }
+
+
 
 
     }

@@ -17,18 +17,21 @@
 
 
 
-            @Html.LabelFor(d =>d.razon_social)
+            @Html.LabelFor(d => d.razon_social)
+            <br />@Html.ValidationMessageFor(d => d.razon_social, "", new { @class = "text-danger" })
             @Html.TextBoxFor(d => d.razon_social, new { @class = "form-control" })
 
 
             @Html.LabelFor(d => d.email)
+            <br />@Html.ValidationMessageFor(d => d.email, "", new { @class = "text-danger" })
             @Html.TextBoxFor(d => d.email, new { @class = "form-control" })
 
 
             @Html.LabelFor(d => d.telefono)
+            <br />@Html.ValidationMessageFor(d => d.telefono, "", new { @class = "text-danger" })
             @Html.TextBoxFor(d => d.telefono, new { @class = "form-control" })
 
-         
+
             <div style="text-align:right" class="boton">
                 <input type="submit" class="btn btn-primary" value="Crear" />
 

@@ -30,7 +30,7 @@ namespace proyecto_1.Controllers
                            ingresos_brutos = c.Ingresos_brutos,
                            fecha_inicio = (DateTime)c.fecha_inicio, 
                            CUIT = c.CUIT,
-                           IVA = c.IVA
+                           IVA = (int) c.IVA
                        }).ToList();
             }
             return View(lst);
@@ -40,6 +40,29 @@ namespace proyecto_1.Controllers
         [HttpGet]
         public ActionResult Crear()
         {
+            List<ComercioViewModel> lst = null;
+            using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
+            {
+                lst = (from d in db.situacion_iva
+                       select new ComercioViewModel
+                       {
+                           id_IVA = d.id_iva,
+                           descripcion = d.descripcion
+                       }).ToList();
+            }
+
+            List<SelectListItem> items = lst.ConvertAll(d =>
+            {
+                return new SelectListItem()
+                {
+                    Text = d.descripcion.ToString(),
+                    Value = d.id_IVA.ToString(),
+                    Selected = false
+
+                };
+            });
+            ViewBag.items = items;
+
             return View();
         }
 
@@ -52,6 +75,29 @@ namespace proyecto_1.Controllers
 
             if (!ModelState.IsValid)
             {
+
+                List<ComercioViewModel> lst = null;
+                using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
+                {
+                    lst = (from d in db.situacion_iva
+                           select new ComercioViewModel
+                           {
+                               id_IVA = d.id_iva,
+                               descripcion = d.descripcion
+                           }).ToList();
+                }
+
+                List<SelectListItem> items = lst.ConvertAll(d =>
+                {
+                    return new SelectListItem()
+                    {
+                        Text = d.descripcion.ToString(),
+                        Value = d.id_IVA.ToString(),
+                        Selected = false
+
+                    };
+                });
+                ViewBag.items = items;
                 return View(model);
             }
 
@@ -61,7 +107,7 @@ namespace proyecto_1.Controllers
 
                 oComercio.razon_social = model.razon_social;
                 oComercio.estado = "1";
-                oComercio.IVA = model.IVA;
+                oComercio.IVA = model.id_IVA;
                 oComercio.Ingresos_brutos = model.Ingresos_brutos;
                 oComercio.CUIT = model.CUIT;
                 oComercio.fecha_inicio = model.fecha_inicio;
@@ -69,6 +115,7 @@ namespace proyecto_1.Controllers
                 db.comercio.Add(oComercio);
 
                 db.SaveChanges();
+                TempData["Referrer"] = "SaveRegister";
             }
 
             return Redirect(Url.Content("~/Comercios"));
@@ -76,13 +123,36 @@ namespace proyecto_1.Controllers
 
         public ActionResult Editar(int id)
         {
+            List<ComercioViewModel> lst = null;
+            using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
+            {
+                lst = (from d in db.situacion_iva
+                       select new ComercioViewModel
+                       {
+                           id_IVA = d.id_iva,
+                           descripcion = d.descripcion
+                       }).ToList();
+            }
+
+            List<SelectListItem> items = lst.ConvertAll(d =>
+            {
+                return new SelectListItem()
+                {
+                    Text = d.descripcion.ToString(),
+                    Value = d.id_IVA.ToString(),
+                    Selected = false
+
+                };
+            });
+            ViewBag.items = items;
+
             EditarComercioViewModel model = new EditarComercioViewModel();
 
             using (var db = new practicaprofesionalEntities1())
             {
                 var oComercio = db.comercio.Find(id);
                 model.razon_social = oComercio.razon_social;
-                model.IVA = oComercio.IVA;
+                model.id_IVA = (int) oComercio.IVA;
                 model.Ingresos_brutos = oComercio.Ingresos_brutos;
                 model.fecha_inicio = (DateTime) oComercio.fecha_inicio;
                 model.CUIT = oComercio.CUIT;
@@ -99,6 +169,28 @@ namespace proyecto_1.Controllers
         {
             if (!ModelState.IsValid)
             {
+                List<ComercioViewModel> lst = null;
+                using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
+                {
+                    lst = (from d in db.situacion_iva
+                           select new ComercioViewModel
+                           {
+                               id_IVA = d.id_iva,
+                               descripcion = d.descripcion
+                           }).ToList();
+                }
+
+                List<SelectListItem> items = lst.ConvertAll(d =>
+                {
+                    return new SelectListItem()
+                    {
+                        Text = d.descripcion.ToString(),
+                        Value = d.id_IVA.ToString(),
+                        Selected = false
+
+                    };
+                });
+                ViewBag.items = items;
                 return View(model);
             }
 
@@ -106,7 +198,7 @@ namespace proyecto_1.Controllers
             {
                 var oComercio = db.comercio.Find(model.id);
                 oComercio.razon_social = model.razon_social;
-                oComercio.IVA = model.IVA;
+                oComercio.IVA = model.id_IVA;
                 oComercio.Ingresos_brutos = model.Ingresos_brutos;
                 oComercio.fecha_inicio = model.fecha_inicio;
                 oComercio.CUIT = model.CUIT;
@@ -114,6 +206,7 @@ namespace proyecto_1.Controllers
 
                 db.Entry(oComercio).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
+                TempData["Referrer"] = "SaveRegister";
 
             }
 

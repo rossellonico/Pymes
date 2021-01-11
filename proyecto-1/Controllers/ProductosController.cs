@@ -66,6 +66,7 @@ namespace proyecto_1.Controllers
                 db.productos.Add(oProducto);
 
                 db.SaveChanges();
+                TempData["Referrer"] = "SaveRegister";
 
                 int newIdentityValue = oProducto.id_producto;
 
@@ -76,6 +77,7 @@ namespace proyecto_1.Controllers
 
                 db.proveedores_productos.Add(p_productos);
                 db.SaveChanges();
+                TempData["Referrer"] = "SaveRegister";
 
             }
 
@@ -92,7 +94,7 @@ namespace proyecto_1.Controllers
                 
                 model.descripcion = oProducto.descripcion;
                 model.stock = oProducto.stock;
-                model.precio = oProducto.precio;
+                model.precio = Decimal.Round(oProducto.precio,2);
                 model.id_proveedor = oProducto.id_comercio;
 
             }
@@ -120,6 +122,7 @@ namespace proyecto_1.Controllers
 
                 db.Entry(oProducto).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
+                TempData["Referrer"] = "SaveRegister";
 
             }
 

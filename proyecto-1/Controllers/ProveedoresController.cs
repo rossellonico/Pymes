@@ -90,6 +90,7 @@ namespace proyecto_1.Controllers
 
                 db.proveedores_comercios.Add(p_comercio);
                 db.SaveChanges();
+                TempData["Referrer"] = "SaveRegister";
 
 
 
@@ -139,6 +140,7 @@ namespace proyecto_1.Controllers
 
                 db.Entry(oProveedor).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
+                TempData["Referrer"] = "SaveRegister";
 
 
             }

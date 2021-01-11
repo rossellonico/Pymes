@@ -6,11 +6,17 @@
 <h2>@ViewBag.Title</h2>
 
 <div class="row">
-    <div  class="boton" >
+    <div class="boton">
         <input type="submit" value="Agregar" class="btn btn-primary" onclick="document.location.href= '@Url.Content("~/Productos/Crear")'" />
     </div>
 </div>
 
+@if ((string)TempData["Referrer"] == "SaveRegister")
+{
+    <div class="alert alert-success">
+        <strong>Su carga se realizo exitosamente</strong>
+    </div>
+}
 
 <div class="row">
     <div class="col-lg-12">
@@ -25,25 +31,26 @@
 
             @foreach (var oProducto in Model)
             {
-                <tr>
-                    <td>@oProducto.id </td>
-                    <td>@oProducto.descripcion </td>
-                    <td>@oProducto.stock </td>
-                    <td> $ @Convert.ToDecimal(oProducto.precio).ToString("#0,00") </td>
-                    <td>
-                        @if (Session.Count > 1 && (int)Session["tipo"] == 1)
-                        {
-                            <input type="submit" value="Editar" class="btn btn-success" onclick="document.location.href='@Url.Content("~/Productos/Editar/"+ oProducto.id)'"  />
+        <tr>
+            <td>@oProducto.id </td>
+            <td>@oProducto.descripcion </td>
+            <td>@oProducto.stock </td>
+            <td>$ @Decimal.Round(oProducto.precio,2) </td>
+            
+            <td>
+                @if (Session.Count > 1 && (int)Session["tipo"] == 1)
+                {
+                    <input type="submit" value="Editar" class="btn btn-success" onclick="document.location.href='@Url.Content("~/Productos/Editar/"+ oProducto.id)'" />
 
-                            <input type="submit" value="Eliminar" class="btn btn-danger" onclick="jsDelete(@oProducto.id);"  />
-                        }
-                       
+                    <input type="submit" value="Eliminar" class="btn btn-danger" onclick="jsDelete(@oProducto.id);" />
+                }
 
 
 
-                    </td>
 
-                </tr>
+            </td>
+
+        </tr>
             }
         </table>
 

@@ -17,10 +17,11 @@ namespace proyecto_1.Controllers
             {
 
                 int idComercio = 0;
+                int idEmpleado = 0;
 
                 if (Session.Count > 1)
                 {
-                    //  idEmpleado = (int)Session["usuario"];
+                    idEmpleado = (int)Session["usuario"];
                     idComercio = (int)Session["comercio"];
                 }
 
@@ -30,6 +31,9 @@ namespace proyecto_1.Controllers
                     lst = (from c in db.clientes
                            join cc in db.cliente_comercio on
                            c.id_cliente equals cc.id_cliente
+                           join si in db.situacion_iva on
+                           c.IVA equals si.id_iva
+
                            where cc.id_comercio == idComercio
                            && c.estado == "1"
                            select new ListaClientesViewModel
@@ -39,7 +43,7 @@ namespace proyecto_1.Controllers
                                direccion = c.direccion,
                                telefono = c.telefono,
                                CUIT = c.CUIT,
-                               IVA = c.IVA
+                               descripcion = si.descripcion
                            }).ToList();
                 }
 
@@ -60,11 +64,10 @@ namespace proyecto_1.Controllers
             using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
             {
                 lst = (from d in db.situacion_iva
-                       where d.id_tipo != 3
-                       select new EmpleadoViewModel
+                       select new ClienteViewModel
                        {
-                           id_tipo = d.id_tipo,
-                           tipo = d.tipo
+                           id_IVA = d.id_iva,
+                           descripcion = d.descripcion
                        }).ToList();
             }
 
@@ -72,8 +75,8 @@ namespace proyecto_1.Controllers
             {
                 return new SelectListItem()
                 {
-                    Text = d.tipo.ToString(),
-                    Value = d.id_tipo.ToString(),
+                    Text = d.descripcion.ToString(),
+                    Value = d.id_IVA.ToString(),
                     Selected = false
 
                 };
@@ -93,6 +96,30 @@ namespace proyecto_1.Controllers
 
             if (!ModelState.IsValid)
             {
+                List<ClienteViewModel> lst = null;
+                using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
+                {
+                    lst = (from d in db.situacion_iva
+                           select new ClienteViewModel
+                           {
+                               id_IVA = d.id_iva,
+                               descripcion = d.descripcion
+                           }).ToList();
+                }
+
+                List<SelectListItem> items = lst.ConvertAll(d =>
+                {
+                    return new SelectListItem()
+                    {
+                        Text = d.descripcion.ToString(),
+                        Value = d.id_IVA.ToString(),
+                        Selected = false
+
+                    };
+                });
+                ViewBag.items = items;
+
+                
                 return View(model);
             }
 
@@ -105,11 +132,12 @@ namespace proyecto_1.Controllers
                 oCliente.telefono = model.telefono;
                 oCliente.estado = "1";
                 oCliente.CUIT = model.CUIT;
-                oCliente.IVA = model.IVA;
+                oCliente.IVA = model.id_IVA;
 
                 db.clientes.Add(oCliente);
 
                 db.SaveChanges();
+                TempData["Referrer"] = "SaveRegister";
 
                 int newIdentityValue = oCliente.id_cliente;
 
@@ -120,6 +148,7 @@ namespace proyecto_1.Controllers
 
                 db.cliente_comercio.Add(c_comercio);
                 db.SaveChanges();
+                TempData["Referrer"] = "SaveRegister";
             }
 
             return Redirect(Url.Content("~/Clientes"));
@@ -131,6 +160,32 @@ namespace proyecto_1.Controllers
         {
             int idComercio = (int)Session["comercio"];
 
+            List<ClienteViewModel> lst = null;
+            using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
+            {
+                lst = (from d in db.situacion_iva
+                       select new ClienteViewModel
+                       {
+                           id_IVA = d.id_iva,
+                           descripcion = d.descripcion
+                       }).ToList();
+            }
+
+            List<SelectListItem> items = lst.ConvertAll(d =>
+            {
+                return new SelectListItem()
+                {
+                    Text = d.descripcion.ToString(),
+                    Value = d.id_IVA.ToString(),
+                    Selected = false
+
+                };
+            });
+            ViewBag.items = items;
+
+            
+
+
             EditarClienteViewModel model = new EditarClienteViewModel();
 
             using (var db = new practicaprofesionalEntities1())
@@ -140,7 +195,7 @@ namespace proyecto_1.Controllers
                 model.direccion = oCliente.direccion;
                 model.telefono = oCliente.telefono;
                 model.CUIT = oCliente.CUIT;
-                model.IVA = oCliente.IVA;
+                model.id_IVA = (int) oCliente.IVA;
 
             }
             return View(model);
@@ -162,11 +217,12 @@ namespace proyecto_1.Controllers
                 oCliente.direccion = model.direccion;
                 oCliente.telefono = model.telefono;
                 oCliente.CUIT = model.CUIT;
-                oCliente.IVA = model.IVA;
+                oCliente.IVA = model.id_IVA;
 
 
                 db.Entry(oCliente).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
+                TempData["Referrer"] = "SaveRegister";
 
             }
 

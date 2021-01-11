@@ -398,6 +398,7 @@ namespace proyecto_1.Controllers
 
                 db.Entry(oEmpleado).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
+                TempData["Referrer"] = "SaveRegister";
             }
 
             return Content("1");
