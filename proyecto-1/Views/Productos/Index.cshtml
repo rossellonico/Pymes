@@ -26,6 +26,7 @@
                 <th>Descripcion</th>
                 <th>Stock</th>
                 <th>Precio</th>
+                <th>Proveedor</th>
                 <th>  </th>
             </tr>
 
@@ -35,8 +36,9 @@
             <td>@oProducto.id </td>
             <td>@oProducto.descripcion </td>
             <td>@oProducto.stock </td>
-            <td>$ @Decimal.Round(oProducto.precio,2) </td>
-            
+            <td>$ @Decimal.Round(oProducto.precio, 2) </td>
+            <td>@oProducto.razon_social </td>
+
             <td>
                 @if (Session.Count > 1 && (int)Session["tipo"] == 1)
                 {

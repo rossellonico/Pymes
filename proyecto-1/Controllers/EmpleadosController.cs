@@ -92,7 +92,7 @@ namespace proyecto_1.Controllers
 
                 }
             */
-
+            //Select de tipo de empleado
             List<EmpleadoViewModel> lst = null;
             using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
             {
@@ -130,7 +130,7 @@ namespace proyecto_1.Controllers
 
             if (!ModelState.IsValid)
             {
-
+                //Select de tipo de empleado
                 List<EmpleadoViewModel> lst = null;
                 using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
                 {
@@ -157,10 +157,7 @@ namespace proyecto_1.Controllers
                 return View(model);
             }
 
-
-
-
-
+            // Si es administrador
             if ((int)Session["tipo"] == 3)
             {
                 using (practicaprofesionalEntities1 db = new practicaprofesionalEntities1())
@@ -180,6 +177,7 @@ namespace proyecto_1.Controllers
 
                 }
             }
+            //Si es Gerente
             else
             {
                 using (practicaprofesionalEntities1 db = new practicaprofesionalEntities1())

@@ -21,14 +21,19 @@ namespace proyecto_1.Controllers
             List<ListaProductosViewModel> lst = null;
             using (practicaprofesionalEntities1 db = new practicaprofesionalEntities1())
             {
-                lst = (from e in db.productos                      
-                       where e.id_comercio == idComercio && e.estado == "1"
+                lst = (from pd in db.productos
+                       join pp in db.proveedores_productos on
+                       pd.id_producto equals pp.id_producto
+                       join pr in db.proveedores on
+                       pp.id_proveedor equals pr.id_proveedor
+                       where pd.id_comercio == idComercio && pd.estado == "1"
                        select new ListaProductosViewModel
                        {
-                           id = e.id_producto,
-                           descripcion = e.descripcion,
-                           stock = e.stock,
-                           precio = e.precio
+                           id = pd.id_producto,
+                           descripcion = pd.descripcion,
+                           stock = pd.stock,
+                           precio = pd.precio,
+                           razon_social= pr.razon_social
                        }).ToList();
             }
             return View(lst);
@@ -38,6 +43,36 @@ namespace proyecto_1.Controllers
         [HttpGet]
         public ActionResult Crear()
         {
+            int idComercio = 0;
+            idComercio = (int)Session["comercio"];
+
+            //Select de proveedores
+            List<ProductoViewModel> lst = null;
+            using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
+            {
+                lst = (from p in db.proveedores
+                       join pc in db.proveedores_comercios on
+                       p.id_proveedor equals pc.id_proveedor
+                       where p.estado == "1" && pc.id_comercio == idComercio
+                       select new ProductoViewModel
+                       {
+                           id_proveedor = p.id_proveedor,
+                           razon_social = p.razon_social
+                       }).ToList();
+            }
+
+            List<SelectListItem> items = lst.ConvertAll(d =>
+            {
+                return new SelectListItem()
+                {
+                    Text = d.razon_social.ToString(),
+                    Value = d.id_proveedor.ToString(),
+                    Selected = false
+
+                };
+            });
+            ViewBag.items = items;
+
             return View();
         }
 
@@ -50,6 +85,29 @@ namespace proyecto_1.Controllers
 
             if (!ModelState.IsValid)
             {
+                //Select de proveedores
+                List<ProductoViewModel> lst = null;
+                using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
+                {
+                    lst = (from p in db.proveedores
+                           select new ProductoViewModel
+                           {
+                               id_proveedor = p.id_proveedor,
+                               razon_social = p.razon_social
+                           }).ToList();
+                }
+
+                List<SelectListItem> items = lst.ConvertAll(d =>
+                {
+                    return new SelectListItem()
+                    {
+                        Text = d.razon_social.ToString(),
+                        Value = d.id_proveedor.ToString(),
+                        Selected = false
+
+                    };
+                });
+                ViewBag.items = items;
                 return View(model);
             }
 
@@ -66,8 +124,7 @@ namespace proyecto_1.Controllers
                 db.productos.Add(oProducto);
 
                 db.SaveChanges();
-                TempData["Referrer"] = "SaveRegister";
-
+                
                 int newIdentityValue = oProducto.id_producto;
 
                 //insert en tabla proveedores_productos
@@ -86,6 +143,37 @@ namespace proyecto_1.Controllers
 
         public ActionResult Editar(int id)
         {
+            int idComercio = (int)Session["comercio"];
+            
+            //Select de proveedores
+            List<ProductoViewModel> lst = null;
+            using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
+            {
+                lst = (from p in db.proveedores
+                       join pc in db.proveedores_comercios on
+                       p.id_proveedor equals pc.id_proveedor
+                       where p.estado == "1" && pc.id_comercio == idComercio
+                       select new ProductoViewModel
+                       {
+                           id_proveedor = p.id_proveedor,
+                           razon_social = p.razon_social
+                       }).ToList();
+            }
+
+            List<SelectListItem> items = lst.ConvertAll(d =>
+            {
+                return new SelectListItem()
+                {
+                    Text = d.razon_social.ToString(),
+                    Value = d.id_proveedor.ToString(),
+                    Selected = false
+
+                };
+            });
+            ViewBag.items = items;
+            
+
+
             EditarProductoViewModel model = new EditarProductoViewModel();
 
             using (var db = new practicaprofesionalEntities1())
@@ -109,6 +197,34 @@ namespace proyecto_1.Controllers
         {
             if (!ModelState.IsValid)
             {
+                int idComercio = (int)Session["comercio"];
+            
+                //Select de proveedores
+                List<ProductoViewModel> lst = null;
+                using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
+                {
+                    lst = (from p in db.proveedores
+                           join pc in db.proveedores_comercios on
+                           p.id_proveedor equals pc.id_proveedor
+                           where p.estado == "1" && pc.id_comercio == idComercio
+                           select new ProductoViewModel
+                           {
+                               id_proveedor = p.id_proveedor,
+                               razon_social = p.razon_social
+                           }).ToList();
+                }
+
+                List<SelectListItem> items = lst.ConvertAll(d =>
+                {
+                    return new SelectListItem()
+                    {
+                        Text = d.razon_social.ToString(),
+                        Value = d.id_proveedor.ToString(),
+                        Selected = false
+
+                    };
+                });
+                ViewBag.items = items;
                 return View(model);
             }
 
@@ -118,9 +234,22 @@ namespace proyecto_1.Controllers
                 oProducto.descripcion = model.descripcion.Trim();
                 oProducto.stock = model.stock;
                 oProducto.precio = model.precio;
-               
+
 
                 db.Entry(oProducto).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                TempData["Referrer"] = "SaveRegister";
+
+                //update en tabla proveedores_productos
+                int newIdentityValue = oProducto.id_producto;
+
+                var id_proveedor_producto = from pc in db.proveedores_productos
+                    where pc.id_producto == newIdentityValue
+                    select pc.id_proveedor_producto;
+
+                var oProveedores_productos = db.proveedores_productos.Find(id_proveedor_producto.First());
+                oProveedores_productos.id_proveedor = model.id_proveedor;
+                db.Entry(oProveedores_productos).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 TempData["Referrer"] = "SaveRegister";
 

@@ -23,7 +23,7 @@ namespace proyecto_1.Controllers
                   //  idEmpleado = (int)Session["usuario"];
                     idComercio = (int)Session["comercio"];
                 }
-
+                
                 List<ListaProveedoresViewModel> lst = null;
                 using (practicaprofesionalEntities1 db = new practicaprofesionalEntities1())
                 {

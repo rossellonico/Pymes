@@ -1,6 +1,7 @@
 ﻿@model proyecto_1.Models.ViewModel.ProductoViewModel
 @{
     ViewBag.Title = "Crear";
+    List<SelectListItem> items = (List<SelectListItem>)ViewBag.items;
 }
 
 <h2>@ViewBag.Title</h2>
@@ -29,11 +30,11 @@
             @Html.TextBoxFor(d => d.precio, new { @class = "form-control" })
 
             @Html.LabelFor(d => d.id_proveedor)
-            @Html.TextBoxFor(d => d.id_proveedor, new { @class = "form-control" })
+            @Html.DropDownListFor(d => d.id_proveedor, items, new { @class = "form-control" });
 
-          
 
-            <div style="text-align:right"  class="boton">
+
+            <div style="text-align:right" class="boton">
                 <input type="submit" class="btn btn-primary" value="Crear" />
 
             </div>

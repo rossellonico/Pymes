@@ -13,5 +13,7 @@ namespace proyecto_1.Models.ViewModel
         public int IVA { get; set; }
         public string ingresos_brutos { get; set; }
         public DateTime fecha_inicio { get; set; }
+        public string fecha_inicios { get; set; }
+
     }
 }

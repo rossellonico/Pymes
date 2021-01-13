@@ -11,7 +11,6 @@ namespace proyecto_1.Models.ViewModel
         [Required]
         [Display(Name = "Tipo de cargo:")]
         public int id_tipo { get; set; }
-
         public string tipo { get; set; }
 
         [Required]
@@ -28,21 +27,11 @@ namespace proyecto_1.Models.ViewModel
         [Display(Name = "Numero de documento")]
         public int dni { get; set; }
 
-        /*
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Contraseña")]
-        public string password { get; set; }
-
-        [Display(Name = "Confirmar contraseña")]
-        [DataType(DataType.Password)]
-        [Compare("password",ErrorMessage = "No coinciden las contraseñas")]
-        public string Confirmarpassword { get; set; }
-        */
-
         [Required]
         [Display(Name = "Comercio")]
         public int comercio { get; set; }
+        public string razon_social { get; set; }
+
 
     }
 

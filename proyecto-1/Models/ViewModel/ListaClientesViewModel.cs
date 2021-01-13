@@ -14,7 +14,6 @@ namespace proyecto_1.Models.ViewModel
         public char estado { get; set; }
         public string CUIT { get; set; }
         public int id_IVA { get; set; }
-        
         public string descripcion { get; set; }
     }
 }

@@ -24,8 +24,9 @@ namespace proyecto_1.Models.ViewModel
         public decimal precio { get; set; }
 
         [Required]
-        [Display(Name = "Numero de proveedor")]
+        [Display(Name = "Proveedor")]
         public int id_proveedor { get; set; }
+        public string razon_social { get; set; }
     }
 
     public class EditarProductoViewModel
@@ -46,8 +47,11 @@ namespace proyecto_1.Models.ViewModel
         public decimal precio { get; set; }
 
         [Required]
-        [Display(Name = "Numero de proveedor")]
+        [Display(Name = "Proveedor")]
         public int id_proveedor { get; set; }
+        public string razon_social { get; set; }
+
+        public int id_proveedor_producto { get; set; }
     }
 
 

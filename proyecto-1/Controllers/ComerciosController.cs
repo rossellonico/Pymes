@@ -40,6 +40,7 @@ namespace proyecto_1.Controllers
         [HttpGet]
         public ActionResult Crear()
         {
+            //Select de situacion frente al IVA
             List<ComercioViewModel> lst = null;
             using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
             {
@@ -75,7 +76,7 @@ namespace proyecto_1.Controllers
 
             if (!ModelState.IsValid)
             {
-
+                //Select de situacion frente al IVA
                 List<ComercioViewModel> lst = null;
                 using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
                 {
@@ -110,7 +111,8 @@ namespace proyecto_1.Controllers
                 oComercio.IVA = model.id_IVA;
                 oComercio.Ingresos_brutos = model.Ingresos_brutos;
                 oComercio.CUIT = model.CUIT;
-                oComercio.fecha_inicio = model.fecha_inicio;
+                oComercio.fecha_inicio = Convert.ToDateTime(model.fecha_inicios);
+                //oComercio.fecha_inicio = model.fecha_inicio;
 
                 db.comercio.Add(oComercio);
 
@@ -123,6 +125,8 @@ namespace proyecto_1.Controllers
 
         public ActionResult Editar(int id)
         {
+
+            //Select de situacion frente al IVA
             List<ComercioViewModel> lst = null;
             using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
             {
@@ -158,7 +162,7 @@ namespace proyecto_1.Controllers
                 model.CUIT = oComercio.CUIT;
 
             }
-
+            model.fecha_inicios = model.fecha_inicio.ToShortDateString();
             return View(model);
 
         }
@@ -168,7 +172,8 @@ namespace proyecto_1.Controllers
         public ActionResult Editar(EditarComercioViewModel model)
         {
             if (!ModelState.IsValid)
-            {
+            {  
+                //Select de situacion frente al IVA
                 List<ComercioViewModel> lst = null;
                 using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
                 {
@@ -200,7 +205,7 @@ namespace proyecto_1.Controllers
                 oComercio.razon_social = model.razon_social;
                 oComercio.IVA = model.id_IVA;
                 oComercio.Ingresos_brutos = model.Ingresos_brutos;
-                oComercio.fecha_inicio = model.fecha_inicio;
+                oComercio.fecha_inicio = Convert.ToDateTime(model.fecha_inicios);
                 oComercio.CUIT = model.CUIT;
 
 

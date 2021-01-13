@@ -60,6 +60,7 @@ namespace proyecto_1.Controllers
         public ActionResult Crear()
         
         {
+            // Select de situacion frente al IVA
             List<ClienteViewModel> lst = null;
             using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
             {
@@ -96,6 +97,7 @@ namespace proyecto_1.Controllers
 
             if (!ModelState.IsValid)
             {
+                // Select de situacion frente al IVA
                 List<ClienteViewModel> lst = null;
                 using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
                 {
@@ -160,6 +162,7 @@ namespace proyecto_1.Controllers
         {
             int idComercio = (int)Session["comercio"];
 
+            // Select de situacion frente al IVA
             List<ClienteViewModel> lst = null;
             using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
             {
@@ -182,9 +185,6 @@ namespace proyecto_1.Controllers
                 };
             });
             ViewBag.items = items;
-
-            
-
 
             EditarClienteViewModel model = new EditarClienteViewModel();
 

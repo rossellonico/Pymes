@@ -39,13 +39,15 @@
             @Html.LabelFor(d => d.id_IVA)
             @Html.DropDownListFor(d => d.id_IVA, items, new { @class = "form-control" });
 
-            <div style="text-align:right" class="boton">
+            <div style="text-align:center" class="boton">
+                <input type="button" value="Cancelar" class="btn btn-danger" onclick="document.location.href= '@Url.Content("~/Clientes/Index")'" />
                 <input type="submit" class="btn btn-primary" value="Crear" />
 
             </div>
 
+
         }
     </div>
 
-</div>
+     </div>
 
