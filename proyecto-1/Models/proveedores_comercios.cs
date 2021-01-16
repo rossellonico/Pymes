@@ -14,10 +14,9 @@ namespace proyecto_1.Models
     
     public partial class proveedores_comercios
     {
-        public int id_proveedores_comercios { get; set; }
+        public int id_provedor_comercio { get; set; }
         public int id_proveedor { get; set; }
         public int id_comercio { get; set; }
-        public string estado { get; set; }
     
         public virtual comercio comercio { get; set; }
         public virtual proveedores proveedores { get; set; }

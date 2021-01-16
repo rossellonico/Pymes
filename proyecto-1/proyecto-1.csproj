@@ -144,58 +144,58 @@
     </Compile>
     <Compile Include="Models\CarritoItem.cs" />
     <Compile Include="Models\clientes.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\cliente_comercio.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\comercio.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DB.Context.cs">
+    <Compile Include="Models\db.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DB.Context.tt</DependentUpon>
+      <DependentUpon>db.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DB.cs">
+    <Compile Include="Models\db.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DB.Designer.cs">
+    <Compile Include="Models\db.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DB.edmx</DependentUpon>
+      <DependentUpon>db.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\empleado.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\facturas.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\factura_productos.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\productos.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\proveedores.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\proveedores_comercios.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\proveedores_productos.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\situacion_iva.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tipo_empleado.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ventas.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModel\EmpleadoViewModel.cs" />
     <Compile Include="Models\ViewModel\ListaClientesViewModel.cs" />
@@ -219,24 +219,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\DB.Context.tt">
+    <Content Include="Models\db.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DB.edmx</DependentUpon>
-      <LastGenOutput>DB.Context.cs</LastGenOutput>
+      <DependentUpon>db.edmx</DependentUpon>
+      <LastGenOutput>db.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DB.tt">
+    <Content Include="Models\db.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DB.edmx</DependentUpon>
-      <LastGenOutput>DB.cs</LastGenOutput>
+      <DependentUpon>db.edmx</DependentUpon>
+      <LastGenOutput>db.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\DB.edmx">
+    <EntityDeploy Include="Models\db.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DB.Designer.cs</LastGenOutput>
+      <LastGenOutput>db.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DB.edmx.diagram">
-      <DependentUpon>DB.edmx</DependentUpon>
+    <Content Include="Models\db.edmx.diagram">
+      <DependentUpon>db.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

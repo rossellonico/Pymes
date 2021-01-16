@@ -35,8 +35,8 @@ namespace proyecto_1.Models
         public virtual DbSet<proveedores> proveedores { get; set; }
         public virtual DbSet<proveedores_comercios> proveedores_comercios { get; set; }
         public virtual DbSet<proveedores_productos> proveedores_productos { get; set; }
+        public virtual DbSet<situacion_iva> situacion_iva { get; set; }
         public virtual DbSet<tipo_empleado> tipo_empleado { get; set; }
         public virtual DbSet<ventas> ventas { get; set; }
-        public virtual DbSet<situacion_iva> situacion_iva { get; set; }
     }
 }

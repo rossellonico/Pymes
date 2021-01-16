@@ -27,7 +27,7 @@ namespace proyecto_1.Controllers
                        {
                            id_comercio = c.id_comercio,
                            razon_social = c.razon_social,
-                           ingresos_brutos = c.Ingresos_brutos,
+                           ingresos_brutos = c.ingresos_brutos,
                            fecha_inicio = (DateTime)c.fecha_inicio, 
                            CUIT = c.CUIT,
                            IVA = (int) c.IVA
@@ -109,7 +109,7 @@ namespace proyecto_1.Controllers
                 oComercio.razon_social = model.razon_social;
                 oComercio.estado = "1";
                 oComercio.IVA = model.id_IVA;
-                oComercio.Ingresos_brutos = model.Ingresos_brutos;
+                oComercio.ingresos_brutos = model.Ingresos_brutos;
                 oComercio.CUIT = model.CUIT;
                 oComercio.fecha_inicio = Convert.ToDateTime(model.fecha_inicios);
                 //oComercio.fecha_inicio = model.fecha_inicio;
@@ -157,7 +157,7 @@ namespace proyecto_1.Controllers
                 var oComercio = db.comercio.Find(id);
                 model.razon_social = oComercio.razon_social;
                 model.id_IVA = (int) oComercio.IVA;
-                model.Ingresos_brutos = oComercio.Ingresos_brutos;
+                model.Ingresos_brutos = oComercio.ingresos_brutos;
                 model.fecha_inicio = (DateTime) oComercio.fecha_inicio;
                 model.CUIT = oComercio.CUIT;
 
@@ -204,7 +204,7 @@ namespace proyecto_1.Controllers
                 var oComercio = db.comercio.Find(model.id);
                 oComercio.razon_social = model.razon_social;
                 oComercio.IVA = model.id_IVA;
-                oComercio.Ingresos_brutos = model.Ingresos_brutos;
+                oComercio.ingresos_brutos = model.Ingresos_brutos;
                 oComercio.fecha_inicio = Convert.ToDateTime(model.fecha_inicios);
                 oComercio.CUIT = model.CUIT;
 
