@@ -3,12 +3,14 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -42,7 +44,7 @@
                         <li>@Html.ActionLink("Proveedores", "Index", "Proveedores")</li>
                     }
 
-                    @if (Session.Count > 1 && (int)Session["tipo"] != 2 )
+                    @if (Session.Count > 1 && (int)Session["tipo"] != 2)
                     {
                         <li>@Html.ActionLink("Empleados", "Index", "Empleados")</li>
                     }
@@ -54,14 +56,14 @@
                     {
                         <li>@Html.ActionLink("Ventas", "Index", "Ventas")</li>
                     }
-                    </ul>
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    
-                        <li>@Html.ActionLink("Editar Perfil", "Editar_propio" + "/" + Session["usuario"], "Empleados")</li>
-                    
-                        <li>@Html.ActionLink("Cerrar Sesion", "CerrarSesion", "Cerrar")</li>
 
-                    </ul>
+                    <li>@Html.ActionLink("Editar Perfil", "Editar_propio" + "/" + Session["usuario"], "Empleados")</li>
+
+                    <li>@Html.ActionLink("Cerrar Sesion", "CerrarSesion", "Cerrar")</li>
+
+                </ul>
 
             </div>
         </div>
@@ -76,6 +78,11 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
     @RenderSection("scripts", required: false)
+
+
+
+
 </body>
 </html>

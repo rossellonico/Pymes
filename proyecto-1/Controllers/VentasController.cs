@@ -43,17 +43,75 @@ namespace proyecto_1.Controllers
             }
             return View(lst);
 
-         
-         
+
+
         }
 
 
         public ActionResult VerCarrito()
         {
+            try
+            {
+
+                int idComercio = 0;
+                int idEmpleado = 0;
+
+                if (Session.Count > 1)
+                {
+                    idEmpleado = (int)Session["usuario"];
+                    idComercio = (int)Session["comercio"];
+                }
+
+                List<ListaClientesViewModel> lst = null;
+                using (practicaprofesionalEntities1 db = new practicaprofesionalEntities1())
+                {
+                    lst = (from c in db.clientes
+                           join cc in db.cliente_comercio on
+                           c.id_cliente equals cc.id_cliente
+                           join si in db.situacion_iva on
+                           c.IVA equals si.id_iva
+
+                           where cc.id_comercio == idComercio
+                           && c.estado == "1"
+                           select new ListaClientesViewModel
+                           {
+                               id_cliente = c.id_cliente,
+                               nombre = c.nombre,
+                               direccion = c.direccion,
+                               telefono = c.telefono,
+                               CUIT = c.CUIT,
+                               descripcion = si.descripcion
+                           }).ToList();
+                }
+
+                List<SelectListItem> items = lst.ConvertAll(d =>
+                {
+                    return new SelectListItem()
+                    {
+                        Text = d.nombre.ToString(),
+                        Value = d.id_cliente.ToString(),
+                        Selected = false
+
+                    };
+                });
+                ViewBag.items = items;
 
 
-            return View();
+
+
+
+
+                return View();
+            }
+            catch (Exception e)
+            {
+                return Content("error no tiene permiso para entrar" + e.Message);
+            }
         }
+
+
+
+
 
 
     }
