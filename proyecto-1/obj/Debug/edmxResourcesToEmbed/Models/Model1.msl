@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="practicaprofesionalModel1StoreContainer" CdmEntityContainer="practicaprofesionalEntities1">
+  <EntityContainerMapping StorageEntityContainer="practicaprofesionalModelStoreContainer" CdmEntityContainer="practicaprofesionalEntities1">
     <EntitySetMapping Name="cliente_comercio">
-      <EntityTypeMapping TypeName="practicaprofesionalModel1.cliente_comercio">
+      <EntityTypeMapping TypeName="practicaprofesionalModel.cliente_comercio">
         <MappingFragment StoreEntitySet="cliente_comercio">
           <ScalarProperty Name="id_cliente_comercio" ColumnName="id_cliente_comercio" />
           <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
@@ -11,33 +11,33 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="clientes">
-      <EntityTypeMapping TypeName="practicaprofesionalModel1.clientes">
+      <EntityTypeMapping TypeName="practicaprofesionalModel.clientes">
         <MappingFragment StoreEntitySet="clientes">
           <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="direccion" ColumnName="direccion" />
-          <ScalarProperty Name="telefono" ColumnName="telefono" />
-          <ScalarProperty Name="CUIT" ColumnName="CUIT" />
-          <ScalarProperty Name="IVA" ColumnName="IVA" />
           <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="CUIT" ColumnName="CUIT" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="IVA" ColumnName="IVA" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="comercio">
-      <EntityTypeMapping TypeName="practicaprofesionalModel1.comercio">
+      <EntityTypeMapping TypeName="practicaprofesionalModel.comercio">
         <MappingFragment StoreEntitySet="comercio">
           <ScalarProperty Name="id_comercio" ColumnName="id_comercio" />
           <ScalarProperty Name="razon_social" ColumnName="razon_social" />
-          <ScalarProperty Name="CUIT" ColumnName="CUIT" />
-          <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="ingresos_brutos" ColumnName="ingresos_brutos" />
           <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+          <ScalarProperty Name="CUIT" ColumnName="CUIT" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="IVA" ColumnName="IVA" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="empleado">
-      <EntityTypeMapping TypeName="practicaprofesionalModel1.empleado">
+      <EntityTypeMapping TypeName="practicaprofesionalModel.empleado">
         <MappingFragment StoreEntitySet="empleado">
           <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
           <ScalarProperty Name="id_comercio" ColumnName="id_comercio" />
@@ -51,7 +51,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="factura_productos">
-      <EntityTypeMapping TypeName="practicaprofesionalModel1.factura_productos">
+      <EntityTypeMapping TypeName="practicaprofesionalModel.factura_productos">
         <MappingFragment StoreEntitySet="factura_productos">
           <ScalarProperty Name="id_factura_producto" ColumnName="id_factura_producto" />
           <ScalarProperty Name="id_factura" ColumnName="id_factura" />
@@ -61,7 +61,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="facturas">
-      <EntityTypeMapping TypeName="practicaprofesionalModel1.facturas">
+      <EntityTypeMapping TypeName="practicaprofesionalModel.facturas">
         <MappingFragment StoreEntitySet="facturas">
           <ScalarProperty Name="id_factura" ColumnName="id_factura" />
           <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
@@ -72,7 +72,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="productos">
-      <EntityTypeMapping TypeName="practicaprofesionalModel1.productos">
+      <EntityTypeMapping TypeName="practicaprofesionalModel.productos">
         <MappingFragment StoreEntitySet="productos">
           <ScalarProperty Name="id_producto" ColumnName="id_producto" />
           <ScalarProperty Name="id_comercio" ColumnName="id_comercio" />
@@ -84,7 +84,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="proveedores">
-      <EntityTypeMapping TypeName="practicaprofesionalModel1.proveedores">
+      <EntityTypeMapping TypeName="practicaprofesionalModel.proveedores">
         <MappingFragment StoreEntitySet="proveedores">
           <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
           <ScalarProperty Name="razon_social" ColumnName="razon_social" />
@@ -95,16 +95,17 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="proveedores_comercios">
-      <EntityTypeMapping TypeName="practicaprofesionalModel1.proveedores_comercios">
+      <EntityTypeMapping TypeName="practicaprofesionalModel.proveedores_comercios">
         <MappingFragment StoreEntitySet="proveedores_comercios">
-          <ScalarProperty Name="id_provedor_comercio" ColumnName="id_provedor_comercio" />
+          <ScalarProperty Name="id_proveedores_comercios" ColumnName="id_proveedores_comercios" />
           <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
           <ScalarProperty Name="id_comercio" ColumnName="id_comercio" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="proveedores_productos">
-      <EntityTypeMapping TypeName="practicaprofesionalModel1.proveedores_productos">
+      <EntityTypeMapping TypeName="practicaprofesionalModel.proveedores_productos">
         <MappingFragment StoreEntitySet="proveedores_productos">
           <ScalarProperty Name="id_proveedor_producto" ColumnName="id_proveedor_producto" />
           <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
@@ -113,7 +114,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="situacion_iva">
-      <EntityTypeMapping TypeName="practicaprofesionalModel1.situacion_iva">
+      <EntityTypeMapping TypeName="practicaprofesionalModel.situacion_iva">
         <MappingFragment StoreEntitySet="situacion_iva">
           <ScalarProperty Name="id_iva" ColumnName="id_iva" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
@@ -121,7 +122,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tipo_empleado">
-      <EntityTypeMapping TypeName="practicaprofesionalModel1.tipo_empleado">
+      <EntityTypeMapping TypeName="practicaprofesionalModel.tipo_empleado">
         <MappingFragment StoreEntitySet="tipo_empleado">
           <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
           <ScalarProperty Name="tipo" ColumnName="tipo" />
@@ -129,7 +130,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ventas">
-      <EntityTypeMapping TypeName="practicaprofesionalModel1.ventas">
+      <EntityTypeMapping TypeName="practicaprofesionalModel.ventas">
         <MappingFragment StoreEntitySet="ventas">
           <ScalarProperty Name="id_venta" ColumnName="id_venta" />
           <ScalarProperty Name="id_comercio" ColumnName="id_comercio" />

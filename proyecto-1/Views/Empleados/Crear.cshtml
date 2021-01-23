@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Crear";
     List<SelectListItem> items = (List<SelectListItem>)ViewBag.items;
+    List<SelectListItem> comercio = (List<SelectListItem>)ViewBag.comercio;
 }
 
 <h2>@ViewBag.Title</h2>
@@ -39,7 +40,7 @@
             if ((int)Session["tipo"] == 3)
             {
                 @Html.LabelFor(d => d.comercio)
-                @Html.TextBoxFor(d => d.comercio, new { @class = "form-control" })
+                @Html.DropDownListFor(d => d.comercio, comercio, new { @class = "form-control" });
 
             }
 

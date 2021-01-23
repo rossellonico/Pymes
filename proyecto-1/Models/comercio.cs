@@ -17,30 +17,19 @@ namespace proyecto_1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public comercio()
         {
-            this.cliente_comercio = new HashSet<cliente_comercio>();
             this.empleado = new HashSet<empleado>();
-            this.productos = new HashSet<productos>();
-            this.proveedores_comercios = new HashSet<proveedores_comercios>();
-            this.ventas = new HashSet<ventas>();
         }
     
         public int id_comercio { get; set; }
         public string razon_social { get; set; }
-        public string CUIT { get; set; }
-        public string estado { get; set; }
         public string ingresos_brutos { get; set; }
         public Nullable<System.DateTime> fecha_inicio { get; set; }
+        public string CUIT { get; set; }
+        public string estado { get; set; }
         public Nullable<int> IVA { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<cliente_comercio> cliente_comercio { get; set; }
+        public virtual situacion_iva situacion_iva { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<empleado> empleado { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<productos> productos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<proveedores_comercios> proveedores_comercios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ventas> ventas { get; set; }
     }
 }

@@ -14,12 +14,6 @@ namespace proyecto_1.Models
     
     public partial class empleado
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public empleado()
-        {
-            this.ventas = new HashSet<ventas>();
-        }
-    
         public int id_empleado { get; set; }
         public int id_comercio { get; set; }
         public int id_tipo { get; set; }
@@ -31,7 +25,5 @@ namespace proyecto_1.Models
     
         public virtual comercio comercio { get; set; }
         public virtual tipo_empleado tipo_empleado { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ventas> ventas { get; set; }
     }
 }

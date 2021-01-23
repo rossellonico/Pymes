@@ -18,6 +18,7 @@ namespace proyecto_1.Models
         public situacion_iva()
         {
             this.clientes = new HashSet<clientes>();
+            this.comercio = new HashSet<comercio>();
         }
     
         public int id_iva { get; set; }
@@ -25,5 +26,7 @@ namespace proyecto_1.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<clientes> clientes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<comercio> comercio { get; set; }
     }
 }

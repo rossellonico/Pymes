@@ -28,7 +28,6 @@ namespace proyecto_1.Models
         public decimal precio { get; set; }
         public string estado { get; set; }
     
-        public virtual comercio comercio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<factura_productos> factura_productos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

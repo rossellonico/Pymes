@@ -19,6 +19,5 @@ namespace proyecto_1.Models
         public int id_comercio { get; set; }
     
         public virtual clientes clientes { get; set; }
-        public virtual comercio comercio { get; set; }
     }
 }

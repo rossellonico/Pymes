@@ -19,8 +19,6 @@ namespace proyecto_1.Models
         public int id_empleado { get; set; }
         public int id_factura { get; set; }
     
-        public virtual comercio comercio { get; set; }
-        public virtual empleado empleado { get; set; }
         public virtual facturas facturas { get; set; }
     }
 }

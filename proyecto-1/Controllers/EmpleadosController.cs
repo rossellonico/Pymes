@@ -62,7 +62,7 @@ namespace proyecto_1.Controllers
                                e.id_tipo equals t.id_tipo
                                join c in db.comercio on
                                e.id_comercio equals c.id_comercio
-                               where e.id_tipo == 2 && e.estado == "1"
+                               where e.id_tipo == 1 && e.estado == "1"
                                select new ListaEmpleadosViewModel
                                {
                                    id_empleado = e.id_empleado,
@@ -115,8 +115,33 @@ namespace proyecto_1.Controllers
 
                 };
             });
-            ViewBag.items = items;
 
+            //Select de comercio
+            List<EmpleadoViewModel> lstc = null;
+            using (Models.practicaprofesionalEntities1 db = new Models.practicaprofesionalEntities1())
+            {
+                lstc = (from d in db.comercio
+                        where d.id_comercio != 0
+                        select new EmpleadoViewModel
+                       {
+                           comercio = d.id_comercio,
+                           razon_social = d.razon_social
+                       }).ToList();
+            }
+
+            List<SelectListItem> comercio = lstc.ConvertAll(d =>
+            {
+                return new SelectListItem()
+                {
+                    Text = d.razon_social.ToString(),
+                    Value = d.comercio.ToString(),
+                    Selected = false
+
+                };
+            });
+
+            ViewBag.comercio = comercio;
+            ViewBag.items = items;
             return View();
         
         }
