@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-
 namespace proyecto_1.Models.ViewModel
 {
     public class ClienteViewModel
@@ -19,8 +18,9 @@ namespace proyecto_1.Models.ViewModel
         [Display(Name = "Dirección")]
         public string direccion { get; set; }
 
-        [Required(ErrorMessage = "El teléfono es un campo obligatorio")]
+        [Required]
         [Display(Name = "Telefono")]
+        [ValidarTelefono]
         public string telefono { get; set; }
 
         [Required]
@@ -35,7 +35,29 @@ namespace proyecto_1.Models.ViewModel
         public string descripcion { get; set; }
 
     }
-
+    public class ValidarTelefono : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            long number;
+            string telefono = (string)value;
+            if (telefono.Length > 13)
+                return new ValidationResult("No se puede ingresar más de 13 caracteres");
+            else
+            {
+                
+                if (Int64.TryParse(telefono, out number) && number > 0)
+                {
+                    
+                    return ValidationResult.Success;
+                }
+                else
+                {
+                    return new ValidationResult("Debe ingresar solo números");
+                }
+            }
+        }
+    }
 
     public class EditarClienteViewModel
     {
@@ -53,6 +75,7 @@ namespace proyecto_1.Models.ViewModel
 
         [Required]
         [Display(Name = "Telefono")]
+        [ValidarTelefono]
         public string telefono { get; set; }
 
         [Required]
@@ -63,11 +86,6 @@ namespace proyecto_1.Models.ViewModel
         [Required]
         [Display(Name = "Situación frente al IVA")]
         public int id_IVA { get; set; }
-
         public string descripcion { get; set; }
-
-
-
-
     }
 }

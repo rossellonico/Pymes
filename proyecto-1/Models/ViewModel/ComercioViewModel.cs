@@ -55,7 +55,6 @@ namespace proyecto_1.Models.ViewModel
         public string Ingresos_brutos { get; set; }
 
         [Required]
-        
         [Display(Name = "Fecha Inicio - dd/mm/aaaa")]
         [ValidarFecha]
         public string fecha_inicios { get; set; }
