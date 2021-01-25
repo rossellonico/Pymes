@@ -20,41 +20,55 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <table class="table">
-            <tr>
-                <th>#</th>
-                <th>Razon Social</th>
-                <th>CUIT</th>
-                <th>IVA</th>
-                <th>Ingresos Brutos</th>
-                <th>Fecha de inicio</th>
-                <th> </th>
-            </tr>
-
-            @foreach (var oComercio in Model)
-            {
+        <table class="table" id="datatable">
+            <thead>
                 <tr>
-                    <td>@oComercio.id_comercio </td>
-                    <td>@oComercio.razon_social </td>
-                    <td>@oComercio.CUIT </td>
-                    <td>@oComercio.IVA </td>
-                    <td>@oComercio.ingresos_brutos </td>
-                    <td>@oComercio.fecha_inicio.ToShortDateString()  </td>
-                    <td>
-
-                        <input type="submit" value="Editar" class="btn btn-success" onclick="document.location.href='@Url.Content("~/Comercios/Editar/"+ oComercio.id_comercio)'" />
-
-                        <input type="submit" value="Eliminar" class="btn btn-danger" onclick="jsDelete(@oComercio.id_comercio);" />
-
-                    </td>
-
+                    <th>#</th>
+                    <th>Razon Social</th>
+                    <th>CUIT</th>
+                    <th>IVA</th>
+                    <th>Ingresos Brutos</th>
+                    <th>Fecha de inicio</th>
+                    <th> </th>
                 </tr>
-            }
+            </thead>
+            <tbody>
+                @foreach (var oComercio in Model)
+                {
+                    <tr>
+                        <td>@oComercio.id_comercio </td>
+                        <td>@oComercio.razon_social </td>
+                        <td>@oComercio.CUIT </td>
+                        <td>@oComercio.IVA </td>
+                        <td>@oComercio.ingresos_brutos </td>
+                        <td>@oComercio.fecha_inicio.ToShortDateString()  </td>
+                        <td>
+
+                            <input type="submit" value="Editar" class="btn btn-success" onclick="document.location.href='@Url.Content("~/Comercios/Editar/"+ oComercio.id_comercio)'" />
+
+                            <input type="submit" value="Eliminar" class="btn btn-danger" onclick="jsDelete(@oComercio.id_comercio);" />
+
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
         </table>
 
     </div>
 
 </div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#datatable').DataTable();
+        });
+
+
+
+    </script>
+}
 
 <script>
      function jsDelete(id) {

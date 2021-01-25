@@ -20,45 +20,61 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <table class="table">
-            <tr>
-                <th>#</th>
-                <th>Descripcion</th>
-                <th>Stock</th>
-                <th>Precio</th>
-                <th>Proveedor</th>
-                <th>  </th>
-            </tr>
+        <table class="table" id="datatable">
 
-            @foreach (var oProducto in Model)
-            {
-        <tr>
-            <td>@oProducto.id </td>
-            <td>@oProducto.descripcion </td>
-            <td>@oProducto.stock </td>
-            <td>$ @Decimal.Round(oProducto.precio, 2) </td>
-            <td>@oProducto.razon_social </td>
-
-            <td>
-                @if (Session.Count > 1 && (int)Session["tipo"] == 1)
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Descripcion</th>
+                    <th>Stock</th>
+                    <th>Precio</th>
+                    <th>Proveedor</th>
+                    <th>  </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var oProducto in Model)
                 {
-                    <input type="submit" value="Editar" class="btn btn-success" onclick="document.location.href='@Url.Content("~/Productos/Editar/"+ oProducto.id)'" />
+                    <tr>
+                        <td>@oProducto.id </td>
+                        <td>@oProducto.descripcion </td>
+                        <td>@oProducto.stock </td>
+                        <td>$ @Decimal.Round(oProducto.precio, 2) </td>
+                        <td>@oProducto.razon_social </td>
 
-                    <input type="submit" value="Eliminar" class="btn btn-danger" onclick="jsDelete(@oProducto.id);" />
+                        <td>
+                            @if (Session.Count > 1 && (int)Session["tipo"] == 1)
+                            {
+                                <input type="submit" value="Editar" class="btn btn-success" onclick="document.location.href='@Url.Content("~/Productos/Editar/"+ oProducto.id)'" />
+
+                                <input type="submit" value="Eliminar" class="btn btn-danger" onclick="jsDelete(@oProducto.id);" />
+                            }
+
+
+
+
+                        </td>
+
+                    </tr>
                 }
+            <tbody>
 
-
-
-
-            </td>
-
-        </tr>
-            }
         </table>
 
-    </div>
+</div>
 
 </div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#datatable').DataTable();
+        });
+
+
+
+    </script>
+}
 
 <script>
      function jsDelete(id) {

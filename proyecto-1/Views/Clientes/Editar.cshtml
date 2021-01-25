@@ -41,7 +41,8 @@
             @Html.DropDownListFor(d => d.id_IVA, items, new { @class = "form-control" });
 
 
-            <div style="text-align:right" class="boton">
+            <div style="text-align:center" class="boton">
+                <input type="button" value="Volver" class="btn btn-primary" onclick="document.location.href= '@Url.Content("~/Clientes/Index")'" />
                 <input type="submit" class="btn btn-primary" value="Editar" />
 
             </div>

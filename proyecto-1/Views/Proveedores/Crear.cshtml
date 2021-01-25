@@ -32,10 +32,11 @@
             @Html.TextBoxFor(d => d.telefono, new { @class = "form-control" })
 
 
-            <div style="text-align:right" class="boton">
-                <input type="submit" class="btn btn-primary" value="Crear" />
+    <div style="text-align:center" class="boton">
+        <input type="button" value="Volver" class="btn btn-primary" onclick="document.location.href= '@Url.Content("~/Proveedores/Index")'" />
+        <input type="submit" class="btn btn-primary" value="Crear" />
 
-            </div>
+    </div>
 
         }
     </div>

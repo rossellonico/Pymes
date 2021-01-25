@@ -21,41 +21,55 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <table class="table">
-            <tr>
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Direccion</th>
-                <th>Telefono</th>
-                <th>CUIT</th>
-                <th>IVA</th>
-                <th>  </th>
-            </tr>
-
-            @foreach (var oClientes in Model)
-            {
+        <table class="table" id="datatable">
+            <thead>
                 <tr>
-                    <td>@oClientes.id_cliente </td>
-                    <td>@oClientes.nombre </td>
-                    <td>@oClientes.direccion </td>
-                    <td>@oClientes.telefono </td>
-                    <td>@oClientes.CUIT </td>
-                    <td>@oClientes.descripcion </td>
-                    <td>
-                        @if (Session.Count > 1 && (int)Session["tipo"] == 1)
-                        {
-                            <input type="submit" value="Editar" class="btn btn-success" onclick="document.location.href='@Url.Content("~/Clientes/Editar/" + oClientes.id_cliente)'" />
-                            <input type="submit" value="Eliminar" class="btn btn-danger" onclick="jsDelete(@oClientes.id_cliente);" />
-                        }
-                    </td>
-
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
+                    <th>CUIT</th>
+                    <th>IVA</th>
+                    <th>  </th>
                 </tr>
-            }
+            </thead>
+            <tbody>
+                @foreach (var oClientes in Model)
+                {
+                    <tr>
+                        <td>@oClientes.id_cliente </td>
+                        <td>@oClientes.nombre </td>
+                        <td>@oClientes.direccion </td>
+                        <td>@oClientes.telefono </td>
+                        <td>@oClientes.CUIT </td>
+                        <td>@oClientes.descripcion </td>
+                        <td>
+                            @if (Session.Count > 1 && (int)Session["tipo"] == 1)
+                            {
+                                <input type="submit" value="Editar" class="btn btn-success" onclick="document.location.href='@Url.Content("~/Clientes/Editar/" + oClientes.id_cliente)'" />
+                                <input type="submit" value="Eliminar" class="btn btn-danger" onclick="jsDelete(@oClientes.id_cliente);" />
+                            }
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
         </table>
 
     </div>
 
 </div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#datatable').DataTable();
+        });
+
+
+
+    </script>
+}
 
 <script>
 
