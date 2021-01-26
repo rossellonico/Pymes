@@ -20,11 +20,29 @@ namespace proyecto_1.Controllers
             try
             {
                
+                
+
                 using (practicaprofesionalEntities1 db = new practicaprofesionalEntities1())
                 {
-                    
+
+                    var docu = documento.ToString();
+
+                    if(docu.Length >8 || docu.Length < 1)
+                    {
+                        return Content("No se puede ingresar más de 8 caracteres");
+                    }
+
+                    if (password.Length < 1)
+                    {
+                        return Content("No se puede ingresar menos de 1 caracter");
+                    }
+
+
+                    var passwordHash=System.Web.Helpers.Crypto.Hash(password);
+
+
                     var lst = from d in db.empleado
-                              where d.dni == documento && d.Contraseña == password
+                              where d.dni == documento && d.Contraseña == passwordHash
                               select d;
 
                     if (lst.Count() > 0)
